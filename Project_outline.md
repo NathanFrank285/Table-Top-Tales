@@ -29,6 +29,13 @@ USERS
     -Can have bookmarks*
     -Can report stories*
 
+Login
+As a non-user, I wish to log in
+
+Signup
+
+Search
+
 
 STORIES
     -Can hold comments
