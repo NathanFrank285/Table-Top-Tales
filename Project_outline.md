@@ -1,6 +1,6 @@
 "As a (INSERT ROLE HERE), I want to (INSERT ACTION HERE), so that I can (INSERT REASON HERE)".
 
-POTENTIAL ROUTES
+POTENTIAL FRONTEND ROUTES
     "/" - Non-User home
     "/" - User Home
     "/signup" - Sign up
@@ -8,6 +8,16 @@ POTENTIAL ROUTES
     "/story/new" - Create a new story
     "/story/:id" - Get a story
     "/profile/:id" - Get a profile page
+
+API ROUTES
+    COMMENTS:
+        POST /api/comments
+        DELETE /api/comments/:id
+        // BONUS: PUT /api/comments/:id
+
+    LIKES:
+        POST /api/likes //Put in req.body whether it's a comment or story like
+        DELETE /api/likes
 
 
 NON-USERS
