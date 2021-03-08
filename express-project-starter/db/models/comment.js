@@ -6,7 +6,18 @@ module.exports = (sequelize, DataTypes) => {
     storyId: DataTypes.INTEGER
   }, {});
   Comment.associate = function(models) {
-    Comment.belongsTo(models.User, {foreignKey: 'userId'});
+    Comment.belongsToMany(models.User, {
+      through: {
+        model: "Like",
+        unique: false,
+        scope: {
+          likeableType: "comment"
+        }
+      },
+      foreignKey: "likeableId",
+      as: "likingUsers",
+      constraints: false
+    })
     Comment.belongsTo(models.Story, {foreignKey: 'storyId'});
   };
   return Comment;

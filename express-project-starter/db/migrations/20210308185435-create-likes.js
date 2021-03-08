@@ -39,7 +39,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    }, {
+    },
+    {
       uniqueKeys: {
         like_unique_constraint: {
           fields: ["userId", "likeableId", "likeableType"]

@@ -8,7 +8,18 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Story.associate = function(models) {
     Story.hasMany(models.Comment, { foreignKey: "storyId" });
-    Story.belongsTo(models.User, { foreignKey: "userId" }); // add the has on on user model
+    Story.belongsToMany(models.User, {
+      through: {
+        model: "Like",
+        unique: false,
+        scope: {
+          likeableType: "story",
+        },
+        foreignKey: "likeableId",
+        as: "likingUsers",
+        constraints: false,
+      },
+    }); // add the has on on user model
   };
   return Story;
 };
