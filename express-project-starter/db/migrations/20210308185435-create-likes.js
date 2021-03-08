@@ -12,15 +12,25 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Users" },
+        unique: "like_unique_constraint",
       },
-      storyId: {
+      likeableId: {
         type: Sequelize.INTEGER,
-        references: { model: "Stories" },
+        references: null,
+        unique: "like_unique_constraint",
       },
-      commentId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Comments" },
+      likeableType: {
+        type: Sequelize.STRING,
+        unique: "like_unique_constraint",
       },
+      // storyId: {
+      //   type: Sequelize.INTEGER,
+      //   references: { model: "Stories" },
+      // },
+      // commentId: {
+      //   type: Sequelize.INTEGER,
+      //   references: { model: "Comments" },
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -29,7 +39,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    });
+    }, {
+      uniqueKeys: {
+        like_unique_constraint: {
+          fields: ["userId", "likeableId", "likeableType"]
+        }
+      }
+    }
+
+    );
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Likes');

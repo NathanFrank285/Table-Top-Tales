@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Story.associate = function(models) {
-    // associations can be defined here
+    Story.hasMany(models.Comment, { foreignKey: "storyId" });
+    Story.belongsTo(models.User, { foreignKey: "userId" }); // add the has on on user model
   };
   return Story;
 };

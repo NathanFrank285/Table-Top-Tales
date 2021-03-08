@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     biography: DataTypes.TEXT
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Comment, { foreignKey: "userId" });
   };
   return User;
 };
