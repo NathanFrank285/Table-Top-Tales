@@ -13,6 +13,34 @@ storiesRouter.get('/new', csrfProtection, asyncHandler( async (req, res, next) =
     res.render('new-story', { csrfToken: req.csrfToken(), title: 'New Story', story })
 }))
 
-storiesRouter.post('/new')
+const storyValidations = [
+  check("title")
+    .isLength({ max: 50 })
+    .withMessage("Name must not be more than 50 characters long")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a title"),
+  check("body")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a body"),
+  check("hook")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide an Email Address")
+    .isLength({ max: 50 })
+    .withMessage("Hook must not be more than 50 characters long"),
+];
+
+storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async (req, res, next) =>{
+    const {title, hook, body, picture} = req.body
+
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+        const userId = req.session.auth.userId
+        Story.create({ title, hook, body, picture, userId})
+
+    }
+
+
+}))
 
 module.exports = storiesRouter
