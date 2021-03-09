@@ -10,7 +10,13 @@ const { check, validationResult } = require('express-validator');
 
 storiesRouter.get('/new', csrfProtection, asyncHandler( async (req, res, next) =>{
     const story = await Story.build()
-    res.render('new-story', { csrfToken: req.csrfToken(), title: 'New Story', story })
+    // if (req.session.auth.userId) {return res.redirect('/users/login')}
+    //todo make sure you can only navigate to and create a story when you are logged in
+      res.render("new-story", {
+        csrfToken: req.csrfToken(),
+        title: "New Story",
+        story,
+      });
 }))
 
 const storyValidations = [
@@ -30,23 +36,27 @@ const storyValidations = [
 ];
 
 storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async (req, res, next) =>{
-    const {title, hook, body, picture} = req.body
-    const story = Story.build({title, hook, body, picture})
+  //todo make sure you can only navigate to and create a story when you are logged in
+  const { title, hook, body, picture } = req.body;
+  const story = Story.build({ title, hook, body, picture });
 
-    const validatorErrors = validationResult(req);
+  const validatorErrors = validationResult(req);
 
-    if (validatorErrors.isEmpty()) {
-        story.userId = req.session.auth.userId
-        await story.save();
-        res.redirect(`/stories/${story.id}`)
-    } else {
-        const errors = validatorErrors.array().map((error) => error.msg);
-        res.render("new-story", { errors, story, csrfToken: req.csrfToken() });
-    }
-
-
+  if (validatorErrors.isEmpty()) {
+    story.userId = req.session.auth.userId;
+    await story.save();
+    res.redirect(`/stories/${story.id}`);
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    res.render("new-story", { errors, story, csrfToken: req.csrfToken() });
+  }
 }))
 
-storiesRouter.get('/:id')
+storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
+  const id = req.params.id;
+  const story = await Story.findByPk(id)
+
+  res.render('view-story', {story})
+}))
 
 module.exports = storiesRouter
