@@ -11,5 +11,22 @@ block content
 
   div(class = "main")
     ul 
-      each 
+      each story in stories 
+        li( class = "story")
+          div.outdiv
+            div.text-div
+              div.author
+                img(src=story.User.avatarUrl)
+                span.author-link: a(href=`/profile/${story.userId}`)= story.User.userName
+              div: a(href=`/stories/${story.id}`)
+                h3= story.title
+                p= story.hook 
+              div.story-info 
+                span= story.createdAt 
+                span `#{minutes} min read`
+            div.story-img-div 
+              img(src=story.picture)
+            
+            
+
 

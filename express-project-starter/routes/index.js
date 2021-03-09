@@ -8,7 +8,10 @@ router.get('/', asyncHandler(async (req, res) => {
   const stories = await Story.findAll({
     include: [User, Like]
   })
-  res.render('index', { title: 'Welcome', stories });
+  let words = stories.body.split(' ');
+  let minutes = (Math.ceil(words.length / 300)).toString()
+
+  res.render('index', { title: 'Welcome', stories, minutes });
 }));
 
 module.exports = router;
