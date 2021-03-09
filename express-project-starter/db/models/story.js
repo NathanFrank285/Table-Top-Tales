@@ -4,9 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     body: DataTypes.TEXT,
     picture: DataTypes.TEXT,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    hook: DataTypes.STRING
   }, {});
-  Story.associate = function(models) {
+  Story.associate = function (models) {
     Story.hasMany(models.Comment, { foreignKey: "storyId" });
     Story.belongsToMany(models.User, {
       through: {
