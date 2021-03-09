@@ -12,12 +12,16 @@ const router = express.Router();
 
 router.get('/signup', csrfProtection, asyncHandler(async (req, res, next) => {
   const user = User.build()
-  res.render('signup', { csrfToken: req.csrfToken(), user });
+  res.render('signup', { csrfToken: req.csrfToken(), user, title: `Sign Up` });
 }));
 
 
 const userRegValidations = [
   //todo check username, email, password match, password, avatarUrl
+  check(`username`),
+  check(`email`),
+  check(`password`),
+  // check()
 ]
 
 //Insert UserValdations here
@@ -26,12 +30,12 @@ router.post('/signup', csrfProtection, userRegValidations, asyncHandler(async (r
     name,
     username,
     email,
-    password,
+    hashedPassword,
     biography,
     avatarUrl,
-    confPassword
+    confirmPassword
   } = req.body
-
+  // console.log(req.body)
   const user = User.build({
     name,
     username,
@@ -43,15 +47,30 @@ router.post('/signup', csrfProtection, userRegValidations, asyncHandler(async (r
   const validatorErrors = validationResult(req);
   //add a password match validation
   if (validatorErrors.isEmpty()) {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    user.hashedPassword = hashedPassword
-    user.save();
-    loginUser(req, res, user);
+    const newHashedPassword = await bcrypt.hash(hashedPassword, 10);
+    user.hashedPassword = newHashedPassword
+    await user.save();
+    console.log(user)
+    await loginUser(req, res, user);
     res.redirect('/');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg)
     res.render('signup', { errors, user, csrfToken: req.csrfToken() });
   }
 }));
+
+router.get('/login', csrfProtection, asyncHandler(async (req, res, next) => {
+  const user = User.build();
+  res.render('login', { csrfToken: req.csrfToken(), title: `Log in`, user })
+}))
+
+const loginValidators = [
+  check(`username`),
+  check(`password`),
+]
+
+// router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
+
+// }))
 
 module.exports = router;
