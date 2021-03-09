@@ -1,0 +1,19 @@
+extends layout
+
+include utils.pug
+
+block content
+    if errors
+        ul
+            each error in errors
+                li= error
+    form(action='/users/signup' method="POST")
+        input(type="hidden", name="_csrf" value=csrfToken)
+        +field("Name", "name", user.name)
+        +field("Username", "username", user.username, true)
+        +field("Email", "email", user.email, true, "email")
+        +field("Avatar URL", "avatarUrl", user.avatarUrl)
+        +field("Biography", "biography", user.biography, false, "textarea")
+        +field("Password", "hashedPassword", user.hashedPassword, true, "password")
+        +field("Confirm Password", "confirmPassword", null, true, "password")
+        button(type="submit") Register

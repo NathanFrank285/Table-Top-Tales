@@ -1,0 +1,14 @@
+extends layout
+
+include utils.pug
+
+block content
+    if errors
+        ul
+            each error in errors
+                li= error
+    form(action='/users/login' method="POST")
+        input(type="hidden", name="_csrf" value=csrfToken)
+        +field("Username", "username", username, true)
+        +field("Password", "password", "", true, "password")
+        button(type="submit") Login
