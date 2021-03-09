@@ -15,8 +15,8 @@ storiesRouter.get('/new', csrfProtection, asyncHandler( async (req, res, next) =
 
 const storyValidations = [
   check("title")
-    .isLength({ max: 50 })
-    .withMessage("Name must not be more than 50 characters long")
+    .isLength({ max: 255 })
+    .withMessage("Name must not be more than 255 characters long")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a title"),
   check("body")
@@ -31,16 +31,22 @@ const storyValidations = [
 
 storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async (req, res, next) =>{
     const {title, hook, body, picture} = req.body
+    const story = Story.build({title, hook, body, picture})
 
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
-        const userId = req.session.auth.userId
-        Story.create({ title, hook, body, picture, userId})
-
+        story.userId = req.session.auth.userId
+        await story.save();
+        res.redirect(`/stories/${story.id}`)
+    } else {
+        const errors = validatorErrors.array().map((error) => error.msg);
+        res.render("new-story", { errors, story, csrfToken: req.csrfToken() });
     }
 
 
 }))
+
+storiesRouter.get('/:id')
 
 module.exports = storiesRouter
