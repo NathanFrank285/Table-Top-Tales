@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const { csrfProtection, asyncHandler } = require('../utils');
+const { loginUser, logoutUser, requireAuth, restoreUser } = require('../auth');
+const { User } = require('../db/models')
+const router = express.Router();
+
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+
+router.get('/signup', csrfProtection, asyncHandler( async (req, res, next) => {
+  const user = User.build()
+  res.render('signup', {csrfToken: req.csrfToken(), user });
+}));
+
 
 module.exports = router;

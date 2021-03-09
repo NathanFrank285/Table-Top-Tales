@@ -1,0 +1,10 @@
+extends layout 
+
+include utils.pug
+
+block content
+    form(action='/users/signup' method="POST")
+        input(type="hidden", name="_csrf" value=csrfToken)
+        +field("name", "name", user.name)
+        +field("username", "username", user.username, true)
+        +field()
