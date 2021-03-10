@@ -50,7 +50,7 @@ storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async 
     res.redirect(`/stories/${story.id}`);
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.render("new-story", { errors, story, csrfToken: req.csrfToken() });
+    res.render("story-new", { errors, story, csrfToken: req.csrfToken() });
   }
 }))
 
@@ -59,7 +59,7 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
   const story = await Story.findByPk(storyId);
   const comments = await Comment.findAll({ where: {storyId} });
 
-  res.render('view-story', {story, comments})
+  res.render("story-view", { story, comments });
 }))
 
 module.exports = storiesRouter

@@ -3,10 +3,7 @@ extends layout
 include utils.pug
 
 block content
-    if errors
-        ul
-            each error in errors
-                li= error
+    +validationErrorSummary(errors)
     form(action='/stories/new' method="POST")
         input(type="hidden", name="_csrf" value=csrfToken)
         +field("Title", "title", story.title, true)
