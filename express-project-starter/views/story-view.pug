@@ -11,9 +11,11 @@ block content
 
   ul.comment
     each comment in comments
-      div.comment__div
+      div.comment__div(id=`comment-${comment.id}`)
         li.comment__body= comment.body
         span.comment__user= comment.User.username
+        br
+        button.comment__delete(id=`${comment.id}`) Delete Comment
   div.newComment
     textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5")
     button.newComment__submit(type="submit") Submit

@@ -26,6 +26,12 @@ commentsRouter.post('/', asyncHandler(async (req, res, next) => {
     res.json({ comment, user })
 }))
 
+commentsRouter.delete('/', asyncHandler(async (req, res, next) =>{
+
+    
+
+}))
+
 
 
 module.exports = commentsRouter

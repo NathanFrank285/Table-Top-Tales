@@ -59,7 +59,8 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
   const story = await Story.findByPk(storyId);
   const comments = await Comment.findAll({
     where: { storyId },
-    include: { model: User }
+    include: { model: User },
+    order: [["id", "ASC"]]
   });
 
   res.render("story-view", { story, comments });

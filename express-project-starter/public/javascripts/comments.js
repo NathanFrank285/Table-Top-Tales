@@ -3,6 +3,8 @@
 window.addEventListener('DOMContentLoaded', async(event)=>{
 
     const newCommentButton = document.querySelector(".newComment__submit")
+    
+    
     newCommentButton.addEventListener("click", async (event) =>{
 
         const textBox = document.querySelector(".newComment__text")
@@ -23,13 +25,18 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
         const commentUl = document.querySelector(".comment")
         const commentDiv = document.createElement('div')
         commentDiv.classList.add('comment__div')
-        commentDiv.innerHTML = `<li class="comment__body">${comment.body}</li><span class="comment__user">${user.username}</span>`
+        commentDiv.innerHTML = 
+            `
+            <li class="comment__body">${comment.body}</li>
+            <span class="comment__user">${user.username}</span> <br>
+            <button id='${comment.id}' class='comment__delete'> Delete Comment </button>
+            `
         
         commentUl.appendChild(commentDiv)
     } catch (error) {
         
     }
-    textBox.value = "now posted"
+    textBox.value = ""
     })
 
 
