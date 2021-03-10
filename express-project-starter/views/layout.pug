@@ -4,14 +4,29 @@ html
       block head
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/navbar.css')
         link(rel="preconnect" href="https://fonts.gstatic.com")
         link(href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet")
   body
-    h1=title
+    
     if locals.authenticated
-      form(action='/users/logout' method="POST")
-        button(type="submit") Logout
+      div.nav-outer-div
+        div.left 
+          div
+            a(href="/"): img(src='https://roll20.net/v3/assets/img/logos/fiasco.png')
+          div
+            h1= title
+        div.right     
+          a(href= `/profile/${user.id}`): img(src= user.avatarUrl)
+          div.form
+            form(action='/users/logout' method="POST")
+              button(type="submit") Logout
     else
-      a(href="/users/login") Login
-      a(href="/users/signup") Sign Up
+      div.nav-outer-div
+        div.logo
+           a(href="/"): img(src='https://roll20.net/v3/assets/img/logos/fiasco.png')
+        div.auth-btns 
+          a(href="/users/login"): button.button(type="button" ) Login
+          a(href="/users/signup"): button.button(type="button" ) Signup 
+
     block content
