@@ -2,16 +2,17 @@ const express = require('express')
 const storiesRouter = express.Router();
 const { csrfProtection, asyncHandler } = require('../utils');
 const { loginUser, logoutUser, requireAuth, restoreUser } = require('../auth');
-const { User, Story } = require('../db/models')
+const { User, Story, Comment } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 
 
 
 
-storiesRouter.get('/new', csrfProtection, asyncHandler( async (req, res, next) =>{
+storiesRouter.get('/new', requireAuth, csrfProtection, asyncHandler( async (req, res, next) =>{
     const story = await Story.build()
-    // if (req.session.auth.userId) {return res.redirect('/users/login')}
-    //todo make sure you can only navigate to and create a story when you are logged in
+
+    console.log("Locals:",req.locals);
+
       res.render("new-story", {
         csrfToken: req.csrfToken(),
         title: "New Story",
@@ -37,6 +38,7 @@ const storyValidations = [
 
 storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async (req, res, next) =>{
   //todo make sure you can only navigate to and create a story when you are logged in
+  console.log(req.locals);
   const { title, hook, body, picture } = req.body;
   const story = Story.build({ title, hook, body, picture });
 
@@ -53,10 +55,11 @@ storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async 
 }))
 
 storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
-  const id = req.params.id;
-  const story = await Story.findByPk(id)
+  const storyId = req.params.id;
+  const story = await Story.findByPk(storyId);
+  const comments = await Comment.findAll({ where: {storyId} });
 
-  res.render('view-story', {story})
+  res.render('view-story', {story, comments})
 }))
 
 module.exports = storiesRouter
