@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
         scope: {
           likeableType: "story",
         },
-        foreignKey: "likeableId",
-        as: "likingUsers",
-        constraints: false,
       },
+      foreignKey: "likeableId",
+      as: "likingUsers",
+      constraints: false,
     }); // add the has on on user model
   };
   return Story;
