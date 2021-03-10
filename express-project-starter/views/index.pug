@@ -16,52 +16,50 @@ block content
         img(src=topStory.picture)
       div.author
         img(src=topStory.author.avatarUrl)
-        span.author-link#big-author-link: a(href=`/profile/${topStory.userId}`)= topStory.author.userName
+        span.author-link#big-author-link: a(href=`/profile/${topStory.userId}`)= topStory.author.username
       div.main-block: a(href=`/stories/${topStory.id}`)
         h3= topStory.title
         p= topStory.hook
       div.story-info
         span #{topStory.createdAt.getMonth()} #{topStory.createdAt.getDate()}
-        span= ` ${Math.ceil(topStory.body.split(' ').length/300)} min read`
+        span= `${Math.ceil(topStory.body.split(' ').length/300)} min read`
         span= topStory.likingUsers.length
 
 
     div.top-four
-      ul
-        each story in sideStories
-          li( class = "story")
-            div.outdiv
-              div.text-div
-                div.author
-                  img(src=story.author.avatarUrl)
-                  span.author-link: a(href=`/profile/${story.userId}`)= story.author.userName
-                div.main-block: a(href=`/stories/${story.id}`)
-                  h3= story.title
-                  p= story.hook
-                div.story-info
-                  span #{story.createdAt.getMonth()} #{story.createdAt.getDate()}
-                  span= ` ${Math.ceil(story.body.split(' ').length/300)} min read`
-                  span= story.likingUsers.length
-              div.story-img-div
-                img(src=story.picture)
-
-
-
-  div(class="feed")
-    ul
-      each story in feed
-        li( class = "story")
-          div.outdiv
+      each story in sideStories
+        div.story
+          div.outdiv-top
             div.text-div
               div.author
                 img(src=story.author.avatarUrl)
-                span.author-link: a(href=`/profile/${story.userId}`)= story.author.userName
+                span.author-link: a(href=`/profile/${story.userId}`)= story.author.username
               div.main-block: a(href=`/stories/${story.id}`)
                 h3= story.title
                 p= story.hook
               div.story-info
                 span #{story.createdAt.getMonth()} #{story.createdAt.getDate()}
-                span= ` ${Math.ceil(story.body.split(' ').length/300)} min read`
+                span= `${Math.ceil(story.body.split(' ').length/300)} min read`
                 span= story.likingUsers.length
-            div.story-img-div
+            div.story-img-div: a(href=`/stories/${story.id}`)
               img(src=story.picture)
+
+
+
+  div(class="feed")
+    each story in feed
+      div( class = "story")
+        div.outdiv-feed
+          div.text-div
+            div.author
+              img(src=story.author.avatarUrl)
+              span.author-link: a(href=`/profile/${story.userId}`)= story.author.username
+            div.main-block: a(href=`/stories/${story.id}`)
+              h3= story.title
+              p= story.hook
+            div.story-info
+              span #{story.createdAt.getMonth()} #{story.createdAt.getDate()}
+              span= `${Math.ceil(story.body.split(' ').length/300)} min read`
+              span= story.likingUsers.length
+          div.story-img-div: a(href=`/stories/${story.id}`)
+             img(src=story.picture)

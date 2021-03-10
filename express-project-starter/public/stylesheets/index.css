@@ -1,3 +1,100 @@
+body {
+    color: #222222;
+    background-color: #FAFAFA;
+}
+
 h1 {
-    color: #555555;
+    /* color: #555555; */
+}
+
+a {
+    text-decoration: none;
+}
+
+.top-stories {
+    display: flex;
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid red;
+    background-color: #1C5D99;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.top-four {
+    position: relative;
+    width: 50%;
+}
+
+.outdiv-top {
+    /* position: fixed; */
+    display: flex;
+    margin: 1em auto;
+    padding: .5em 1em;
+    border: 1px solid #222222;
+    background-color: #BBCDE5;
+    width: 100%;
+}
+
+.outdiv-feed {
+    display: flex;
+    flex-direction: row;
+    margin: 1em auto;
+    padding: .5em 1em;
+    border: 1px solid #222222;
+    background-color: #BBCDE5;
+    max-width: 60em;
+}
+
+.text-div {
+    display: flex;
+    flex-grow: 2;
+    flex-direction: column;
+    /* align-items: space-between; */
+    justify-content: space-between;
+}
+
+.author {
+    display: flex;
+    align-content: center;
+}
+
+.author img {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: .25em;
+    margin: .2em;
+}
+
+.author-link {
+    margin: .5em;
+    /* margin-bottom: .5em */
+}
+
+.story-img-div {
+    align-self: center;
+    justify-self: center;
+}
+
+.story-img-div img {
+    height: 10em;
+    align-self: center;
+}
+
+.story-img-div a {
+    /* position: relative; */
+    margin-bottom: 0;
+    bottom: 0;
+    /* align-self: center; */
+}
+
+.main-block h3 {
+    font-size: 2em;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.story-info span {
+    font-size: .85em;
+    margin-right: 1em;
 }
