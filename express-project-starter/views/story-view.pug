@@ -1,6 +1,8 @@
 extends layout
 block content
-  link(rel="stylesheet" href="./javascripts/comments.js")
+  append head 
+    script(src="/javascripts/comments.js" type="module" defer)
+
   h1= story.title
   p= story.hook
   p= story.body
