@@ -1,6 +1,6 @@
 extends layout
 block content
-
+  link(rel="stylesheet" href="./javascripts/comments.js")
   h1= story.title
   p= story.hook
   p= story.body
@@ -10,3 +10,6 @@ block content
   ul
     each comment in comments
       li= comment
+  div.newComment
+    textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5") 
+    button.newComment__submit(type="submit") Submit 

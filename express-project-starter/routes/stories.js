@@ -13,7 +13,7 @@ storiesRouter.get('/new', requireAuth, csrfProtection, asyncHandler( async (req,
 
     console.log("Locals:",req.locals);
 
-      res.render("new-story", {
+      res.render("story-new", {
         csrfToken: req.csrfToken(),
         title: "New Story",
         story,
