@@ -14,14 +14,15 @@ block content
     div.main-story
       div.main-story-img-div: a(href=`/stories/${topStory.id}`)
         img(src=topStory.picture)
-      div.author
-        img(src=topStory.author.avatarUrl)
-        span.author-link#big-author-link: a(href=`/profile/${topStory.userId}`)= topStory.author.username
-      div.main-block: a(href=`/stories/${topStory.id}`)
-        h3= topStory.title
-        p= topStory.hook
+      div.main-text-container#main-text-container
+        div.author
+          img(src=topStory.author.avatarUrl)
+          span.author-link#big-author-link: a(href=`/profile/${topStory.userId}`)= topStory.author.username
+        div.main-block: a(href=`/stories/${topStory.id}`)
+          h3= topStory.title
+          p= topStory.hook
       div.story-info
-        span #{topStory.createdAt.getMonth()} #{topStory.createdAt.getDate()}
+        span #{months[topStory.createdAt.getMonth()]} #{topStory.createdAt.getDate()}
         span= `${Math.ceil(topStory.body.split(' ').length/300)} min read`
         span= topStory.likingUsers.length
 
@@ -38,7 +39,7 @@ block content
                 h3= story.title
                 p= story.hook
               div.story-info
-                span #{story.createdAt.getMonth()} #{story.createdAt.getDate()}
+                span #{months[story.createdAt.getMonth()]} #{story.createdAt.getDate()}
                 span= `${Math.ceil(story.body.split(' ').length/300)} min read`
                 span= story.likingUsers.length
             div.story-img-div: a(href=`/stories/${story.id}`)
@@ -58,7 +59,7 @@ block content
               h3= story.title
               p= story.hook
             div.story-info
-              span #{story.createdAt.getMonth()} #{story.createdAt.getDate()}
+              span #{months[story.createdAt.getMonth()]} #{story.createdAt.getDate()}
               span= `${Math.ceil(story.body.split(' ').length/300)} min read`
               span= story.likingUsers.length
           div.story-img-div: a(href=`/stories/${story.id}`)
