@@ -1,3 +1,136 @@
+body {
+    color: #222222;
+    background-color: #FAFAFA;
+    font-family: 'Lora', serif;
+}
+
 h1 {
-    color: #555555;
+    /* color: #555555; */
+}
+
+a {
+    text-decoration: none;
+}
+
+.top-stories {
+    display: flex;
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid red;
+    background-color: #1C5D99;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.main-story {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 50%;
+    border: 1px solid #222222;
+    background-color: #BBCDE5;
+    margin: 1.12em 1em;
+    padding: 1em;
+    /* font-size: 2em; */
+}
+
+#main-text-container {
+    padding: 2em 0;
+}
+
+#main-text-container h3 {
+    /* background-color: black; */
+    font-size: 3em;
+}
+
+#main-text-container p {
+    font-size: 2em;
+}
+
+.main-story-img-div img{
+    position: relative;
+    max-width: 100%;
+}
+
+.top-stories h3, .feed h3 {
+    font-weight: bold;
+}
+
+.top-four {
+    position: relative;
+    width: 50%;
+}
+
+.outdiv-top {
+    /* position: fixed; */
+    display: flex;
+    margin: 1em auto;
+    padding: .5em 1em;
+    border: 1px solid #222222;
+    background-color: #BBCDE5;
+    width: 100%;
+}
+
+.outdiv-feed {
+    display: flex;
+    flex-direction: row;
+    margin: 1em auto;
+    padding: .5em 1em;
+    border: 1px solid #222222;
+    background-color: #BBCDE5;
+    max-width: 60em;
+}
+
+.text-div {
+    display: flex;
+    flex-grow: 2;
+    flex-direction: column;
+    /* align-items: space-between; */
+    justify-content: space-between;
+}
+
+.author {
+    display: flex;
+    align-content: center;
+}
+
+.author img {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: .25em;
+    margin: .2em;
+}
+
+.author-link {
+    margin: .5em;
+    /* margin-bottom: .5em */
+}
+
+.story-img-div {
+    align-self: center;
+    justify-self: center;
+}
+
+.story-img-div img {
+    height: 10em;
+    align-self: center;
+}
+
+.story-img-div a {
+    /* position: relative; */
+    margin-bottom: 0;
+    bottom: 0;
+    /* align-self: center; */
+}
+
+/* .main-block h3 {
+    font-size: 2em;
+    text-decoration: none;
+    font-weight: 500;
+} */
+
+.story-info span {
+    font-size: .85em;
+    margin-right: 1em;
 }
