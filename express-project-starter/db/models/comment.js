@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       constraints: false
     })
     Comment.belongsTo(models.Story, {foreignKey: 'storyId'});
+    Comment.belongsTo(models.User, {foreignKey: 'userId'});
   };
   return Comment;
 };

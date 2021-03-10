@@ -1,6 +1,6 @@
 extends layout
 block content
-  append head 
+  append head
     script(src="/javascripts/comments.js" type="module" defer)
 
   h1= story.title
@@ -11,7 +11,8 @@ block content
 
   ul
     each comment in comments
-      li= comment
+      li.comment= comment.body
+      span.commenter= comment.User.username
   div.newComment
-    textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5") 
-    button.newComment__submit(type="submit") Submit 
+    textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5")
+    button.newComment__submit(type="submit") Submit
