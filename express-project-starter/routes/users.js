@@ -86,8 +86,7 @@ router.post('/signup', csrfProtection, userRegValidations, asyncHandler(async (r
     const newHashedPassword = await bcrypt.hash(hashedPassword, 10);
     user.hashedPassword = newHashedPassword
     await user.save();
-    console.log(user)
-    await loginUser(req, res, user);
+    loginUser(req, res, user);
     return req.session.save(e => {
       if (e) {
         return next(e)
