@@ -6,13 +6,25 @@ const { asyncHandler } = require('../utils');
 /* GET home page. */
 router.get('/', asyncHandler(async (req, res) => {
   const stories = await Story.findAll({
-    include: {
-      model: User,
-      as: "likingUsers",
-    },
+    include: [
+      {
+        model: User,
+        as: "likingUsers",
+      },
+      {
+        model: User,
+        as: "author",
+        attributes: {
+          exclude: ["hashedPassword"]
+        }
+      }
+
+    ]
   });
-  // res.render('index', { title: 'Welcome', stories });
-  res.json({stories})
+
+  // console.log(stories[0])
+  res.render('index', { title: 'Welcome', stories });
+  // res.json({ stories })
 }));
 
 module.exports = router;
