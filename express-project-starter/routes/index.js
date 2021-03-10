@@ -22,8 +22,12 @@ router.get('/', asyncHandler(async (req, res) => {
     ]
   });
 
+  const topStory = stories[0]
+  const sideStories = stories.slice(1, 5)
+  const feed = stories.slice(5);
+
   // console.log(stories[0])
-  res.render('index', { title: 'Welcome', stories });
+  res.render('index', { title: 'Welcome', topStory, sideStories, feed });
   // res.json({ stories })
 }));
 

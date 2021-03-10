@@ -12,25 +12,30 @@ block content
   div.top-stories
 
     div.main-story
-      div.main-story-img-div: a(href=`/stories/${story.id}`)
-        img(src=story.picture)
+      div.main-story-img-div: a(href=`/stories/${topStory.id}`)
+        img(src=topStory.picture)
       div.author
-        img(src=story.author.avatarUrl)
-        span.author-link#big-author-link: a(href=`/profile/${story.userId}`)= story.author.userName
-      div.main-block: a(href=`/stories/${story.id}`)
-        h3= story.title
-        p= story.hook
+        img(src=topStory.author.avatarUrl)
+        span.author-link#big-author-link: a(href=`/profile/${topStory.userId}`)= topStory.author.userName
+      div.main-block: a(href=`/stories/${topStory.id}`)
+        h3= topStory.title
+        p= topStory.hook
       div.story-info
-        span #{story.createdAt.getMonth()} #{story.createdAt.getDate()}
-        span= ` ${Math.ceil(story.body.split(' ').length/300)} min read`
-        span= story.likingUsers.length
+        span #{topStory.createdAt.getMonth()} #{topStory.createdAt.getDate()}
+        span= ` ${Math.ceil(topStory.body.split(' ').length/300)} min read`
+        span= topStory.likingUsers.length
+
 
     div.top-four
       ul
+        each story in sideStories
+          p hi
 
-  div(class = "feed")
+
+
+  div(class="feed")
     ul
-      each story in stories
+      each story in feed
         li( class = "story")
           div.outdiv
             div.text-div
