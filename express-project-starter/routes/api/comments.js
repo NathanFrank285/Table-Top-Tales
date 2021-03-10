@@ -21,7 +21,9 @@ commentsRouter.post('/', asyncHandler(async (req, res, next) => {
         userId,
         storyId
     })
-    res.json({ comment })
+    const user = await User.findByPk(comment.userId)
+    
+    res.json({ comment, user })
 }))
 
 

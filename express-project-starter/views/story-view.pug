@@ -9,10 +9,11 @@ block content
 
   h1 Comment section
 
-  ul
+  ul.comment
     each comment in comments
-      li.comment= comment.body
-      span.commenter= comment.User.username
+      div.comment__div
+        li.comment__body= comment.body
+        span.comment__user= comment.User.username
   div.newComment
     textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5")
     button.newComment__submit(type="submit") Submit

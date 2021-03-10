@@ -62,8 +62,8 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
     include: { model: User }
   });
 
-  // res.render("story-view", { story, comments });
-  res.json({comments})
+  res.render("story-view", { story, comments });
+  // res.json({comments})
 }))
 
 module.exports = storiesRouter
