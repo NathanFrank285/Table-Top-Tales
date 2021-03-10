@@ -2,10 +2,14 @@
 
 window.addEventListener('DOMContentLoaded', async(event)=>{
 
+    DeletButton.addEventListener("click", (event)=> {
+        const button = event.target
+        
+    })
+    //* Adding a new comment
     const newCommentButton = document.querySelector(".newComment__submit")
-    
-    
     newCommentButton.addEventListener("click", async (event) =>{
+
 
         const textBox = document.querySelector(".newComment__text")
         const storyId = textBox.getAttribute("storyid")
@@ -25,19 +29,21 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
         const commentUl = document.querySelector(".comment")
         const commentDiv = document.createElement('div')
         commentDiv.classList.add('comment__div')
-        commentDiv.innerHTML = 
+        commentDiv.innerHTML =
             `
             <li class="comment__body">${comment.body}</li>
             <span class="comment__user">${user.username}</span> <br>
             <button id='${comment.id}' class='comment__delete'> Delete Comment </button>
             `
-        
+
         commentUl.appendChild(commentDiv)
     } catch (error) {
-        
+
     }
     textBox.value = ""
     })
+
+    //* Deleting a comment
 
 
 })
