@@ -1,0 +1,16 @@
+extends layout
+
+include utils.pug
+
+block content
+    if errors
+        ul
+            each error in errors
+                li= error
+    form(action='/stories/new' method="POST")
+        input(type="hidden", name="_csrf" value=csrfToken)
+        +field("Title", "title", story.title, true)
+        +field("Hook", "hook", story.hook, true)
+        +field("Body", "body", story.body, true, "textarea")
+        +field("Picture URL", "picture", story.picture)
+        button(type="submit") Publish

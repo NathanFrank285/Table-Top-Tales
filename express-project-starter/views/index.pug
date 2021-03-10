@@ -16,14 +16,15 @@ block content
           div.outdiv
             div.text-div
               div.author
-                img(src=story.User.avatarUrl)
-                span.author-link: a(href=`/profile/${story.userId}`)= story.User.userName
+                img(src=story.author.avatarUrl)
+                span.author-link: a(href=`/profile/${story.userId}`)= story.author.userName
               div: a(href=`/stories/${story.id}`)
                 h3= story.title
                 p= story.hook 
               div.story-info 
-                span= story.createdAt 
-                span `#{minutes} min read`
+                span #{story.createdAt.getMonth()} #{story.createdAt.getDate()}
+                span= ` ${Math.ceil(story.body.split(' ').length/300)} min read`
+                span= story.likingUsers.length
             div.story-img-div 
               img(src=story.picture)
             
