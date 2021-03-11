@@ -62,7 +62,6 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
     include: { model: User },
     order: [["id", "ASC"]]
   });
-  res.locals.userId = req.session.auth.userId;
 
 
   res.render("story-view", { story, comments });
@@ -70,7 +69,7 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
 }))
 
 storiesRouter.delete('/:id/delete', asyncHandler(async (req, res) => {
-  //todo 
+  //todo
 
 }))
 
