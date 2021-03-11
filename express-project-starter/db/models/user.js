@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     avatarUrl: DataTypes.TEXT,
     biography: DataTypes.TEXT
   }, {});
-  User.associate = function (models) {
+  User.associate = function(models) {
+    User.hasMany(models.Comment, { foreignKey: "userId" });
     User.belongsToMany(models.Story, {
       through: {
         model: "Like",

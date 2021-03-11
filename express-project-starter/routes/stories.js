@@ -2,17 +2,18 @@ const express = require('express')
 const storiesRouter = express.Router();
 const { csrfProtection, asyncHandler } = require('../utils');
 const { loginUser, logoutUser, requireAuth, restoreUser } = require('../auth');
-const { User, Story } = require('../db/models')
+const { User, Story, Comment } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 
 
 
 
-storiesRouter.get('/new', csrfProtection, asyncHandler( async (req, res, next) =>{
+storiesRouter.get('/new', requireAuth, csrfProtection, asyncHandler( async (req, res, next) =>{
     const story = await Story.build()
-    // if (req.session.auth.userId) {return res.redirect('/users/login')}
-    //todo make sure you can only navigate to and create a story when you are logged in
-      res.render("new-story", {
+
+    console.log("Locals:",req.locals);
+
+      res.render("story-new", {
         csrfToken: req.csrfToken(),
         title: "New Story",
         story,
@@ -37,6 +38,7 @@ const storyValidations = [
 
 storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async (req, res, next) =>{
   //todo make sure you can only navigate to and create a story when you are logged in
+  console.log(req.locals);
   const { title, hook, body, picture } = req.body;
   const story = Story.build({ title, hook, body, picture });
 
@@ -48,15 +50,28 @@ storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async 
     res.redirect(`/stories/${story.id}`);
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.render("new-story", { errors, story, csrfToken: req.csrfToken() });
+    res.render("story-new", { errors, story, csrfToken: req.csrfToken() });
   }
 }))
 
 storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
-  const id = req.params.id;
-  const story = await Story.findByPk(id)
+  const storyId = req.params.id;
+  const story = await Story.findOne({where: {id: storyId}, include:{ model: User, as: "author"}});
+  const comments = await Comment.findAll({
+    where: { storyId },
+    include: { model: User },
+    order: [["id", "ASC"]]
+  });
+  res.locals.userId = req.session.auth.userId;
 
-  res.render('view-story', {story})
+
+  res.render("story-view", { story, comments });
+  // res.json(res.locals)
+}))
+
+storiesRouter.delete('/:id/delete', asyncHandler(async (req, res) => {
+  //todo 
+
 }))
 
 module.exports = storiesRouter
