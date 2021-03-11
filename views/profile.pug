@@ -2,6 +2,7 @@ extends layout.pug
 
 append head
     link(rel="stylesheet" href="/stylesheets/profile.css")
+    script(src="/javascripts/follows.js" type="module" defer)
 
 block content
     div.profile-container
@@ -11,11 +12,11 @@ block content
             div.username
                 h1= profileUser.username
             if authenticated
-                div.follow-button
+                div.follow-div
                     if (locals.user.id !== profileUser.id)
-                        form(action="")
-                            button Follow
-
+                        form(action="")                        
+                            button#follow-button(class= "follow-button__following" data-localuser= locals.user.id data-profileuser= profileUser.id data-answer= answer)= followData
+                            
 
         div.main-profile
             div.stories

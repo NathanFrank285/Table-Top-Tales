@@ -11,6 +11,7 @@ const usersRouter = require('./routes/users');
 const commentsRouter = require('./routes/api/comments')
 const storiesRouter = require('./routes/stories');
 const profileRouter = require(`./routes/profile`);
+const followRouter = require(`./routes/api/follow`);
 const storiesApiRouter = require('./routes/api/stories')
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
@@ -44,7 +45,12 @@ store.sync();
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/stories', storiesRouter);
+app.use(`/profile`, profileRouter);
+
+// These are API routes
 app.use('/comments', commentsRouter);
+app.use(`/follow`, followRouter);
+
 app.use(`/profile`, profileRouter)
 app.use("/stories/api", storiesApiRouter);
 // catch 404 and forward to error handler
