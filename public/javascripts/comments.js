@@ -1,7 +1,17 @@
 // const commentsRouter = require("../../routes/api/comments")
 
 window.addEventListener('DOMContentLoaded', async(event)=>{
+    //* Deleting a Story
 
+    // document
+    //   .getElementById("storybtns__delete")
+    //   .addEventListener("click", async (event) => {
+    //     // const response = await fetch(`/stories/${id}/delete`)
+    //     const id = event.target.storyid
+    //     console.log(id);
+    //     // window.location.href = `/stories/${id}/delete`;
+
+    //   });
 
     //* Deleting a comment
   document.addEventListener("click", async (event) => {
