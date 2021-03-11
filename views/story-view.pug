@@ -11,7 +11,7 @@ block content
   p= story.body
 
   if authenticated
-    if (locals.userId === story.author.id)
+    if (locals.user.id === story.author.id)
       button delete
       //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
     else
@@ -28,7 +28,7 @@ block content
         li.comment__body= comment.body
         span.comment__user= comment.User.username
         br
-        if authenticated && (locals.authorId === comment.userId)
+        if authenticated && (locals.user.id === comment.userId)
           button.comment__delete(id=`${comment.id}`) Delete Comment
   if authenticated
     div.newComment
