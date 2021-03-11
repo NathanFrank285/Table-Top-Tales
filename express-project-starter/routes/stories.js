@@ -56,15 +56,17 @@ storiesRouter.post('/new', csrfProtection, storyValidations, asyncHandler(async 
 
 storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
   const storyId = req.params.id;
-  const story = await Story.findByPk(storyId);
+  const story = await Story.findOne({where: {id: storyId}, include:{ model: User, as: "author"}});
   const comments = await Comment.findAll({
     where: { storyId },
     include: { model: User },
     order: [["id", "ASC"]]
   });
+  res.locals.authorId = story.author.id
+
 
   res.render("story-view", { story, comments });
-  // res.json({comments})
+  // res.json(res.locals)
 }))
 
 module.exports = storiesRouter

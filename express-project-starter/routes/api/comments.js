@@ -40,8 +40,9 @@ commentsRouter.delete('/:id', asyncHandler(async (req, res, next) =>{
     // res.json({errors})
   }
 
-  res.json('you can delete this tweet')
-  comment.destroy()
+  await comment.destroy()
+  res.json({})
+//   res.json('you can delete this tweet')
 }))
 
 
