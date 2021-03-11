@@ -10,9 +10,13 @@ block content
   p= story.hook
   p= story.body
 
-  if authenticated && (locals.authorId === story.author.id)
-    button follow
-    button delete
+  if authenticated
+    if (locals.userId === story.author.id)
+      button delete
+      //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
+    else
+      button follow
+      //- when a logged in user clicks follow, they will now be following the author the story
   else
     a(href="../users/login") Login to follow
 
