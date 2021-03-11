@@ -68,9 +68,9 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
   // res.json(res.locals)
 }))
 
-storiesRouter.delete('/:id/delete', asyncHandler(async (req, res) => {
-  //todo
+storiesRouter.get('/:id/delete', asyncHandler(async (req, res) => {
 
+  res.render('story-delete')
 }))
 
 module.exports = storiesRouter

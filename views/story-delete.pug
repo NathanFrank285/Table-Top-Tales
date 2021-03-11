@@ -1,6 +1,13 @@
 extends layout.pug
-block content
+include utils.pug
 
   //- pass the story id to this page, if you click cancel will redirect to the story that you came from
-
-  
+  block content
+    h1 delete your story here
+    //- h3(class='pb-3'): em for #{park.parkName}
+    //- +validationErrorSummary(errors)
+    //- form(action=`/attraction/edit/${attraction.id}` method='post')
+    //-   include attraction-form-fields.pug
+    //-   div(class='py-4')
+    //-     button(type='submit' class='btn btn-primary') Update Attraction
+    //-     a(href=`/attraction/${attraction.id}` class='btn btn-warning ml-2') Cancel
