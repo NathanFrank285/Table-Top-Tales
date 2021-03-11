@@ -1,7 +1,9 @@
 extends layout
+include utils.pug
 block content
   append head
     script(src="/javascripts/comments.js" type="module" defer)
+  +validationErrorSummary(errors)
 
   h1= story.title
   p= story.hook

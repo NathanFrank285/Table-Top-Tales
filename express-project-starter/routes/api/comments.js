@@ -22,14 +22,26 @@ commentsRouter.post('/', asyncHandler(async (req, res, next) => {
         storyId
     })
     const user = await User.findByPk(comment.userId)
-    
+
     res.json({ comment, user })
 }))
 
-commentsRouter.delete('/', asyncHandler(async (req, res, next) =>{
+commentsRouter.delete('/:id', asyncHandler(async (req, res, next) =>{
+  const id = req.params.id;
+  const comment = await Comment.findByPk(id);
 
-    
+  //todo populate errors on the page when deleted by an unauthorized user
+  if (req.session.auth.userId !== comment.userId) {
+    const errors = new Error("Unauthorized");
+    errors.status = 401;
+    errors.message = "You are not authorized to delete this tweet.";
+    errors.title = "Unauthorized";
+    console.log(errors);
+    // res.json({errors})
+  }
 
+  res.json('you can delete this tweet')
+  comment.destroy()
 }))
 
 
