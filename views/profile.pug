@@ -11,10 +11,10 @@ block content
             div.username
                 h1= profileUser.username
             if authenticated
-                div.follow-button
+                div.follow-div
                     if (locals.user.id !== profileUser.id)
                         form(action="")
-                            button Follow
+                            button#follow-button Follow
 
 
         div.main-profile
