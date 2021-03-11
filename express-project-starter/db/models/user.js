@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     avatarUrl: DataTypes.TEXT,
     biography: DataTypes.TEXT
   }, {});
-  User.associate = function(models) {
+  User.associate = function (models) {
     User.belongsToMany(models.Story, {
       through: {
         model: "Like",
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       as: "likedStories",
       constraints: false,
     });
-
+    User.hasMany(models.Story, { foreignKey: `userId` })
     User.belongsToMany(models.Comment, {
       through: {
         model: "Like",

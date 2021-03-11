@@ -1,0 +1,42 @@
+extends layout.pug
+
+append head
+
+block content
+    div.top-profile
+        div.avatar
+            img(src=profileUser.avatarUrl)
+        div.username
+            h1= profileUser.username
+        if authenticated
+            if (locals.user.id !== profileUser.id)
+                div.follow-button
+                    form(action="")
+                        button Follow
+
+
+    div.main-profile
+        div.stories
+            each story in profileUser.Stories
+                div.story-container: a(href=`story/${story.id}`)
+                    div.story-picture
+                        img(src= story.picture)
+                    div.story-text-container
+                        div.story-title
+                            h4= story.title
+                        div.username
+                            p= profileUser.username
+        div.info
+            div.biography
+                if profileUser.name
+                    h3= profileUser.name
+                p= profileUser.biography
+            div.follow-area
+                div.followers
+                    h5 Followers
+                    each follower in profileUser.follower
+                        p follower
+                div.following
+                    h5 Following
+                    each follow in profileUser.following
+                        p following
