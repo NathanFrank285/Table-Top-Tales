@@ -73,3 +73,13 @@ a {
     margin: .5em;
     /* border: 1px solid green; */
 }
+
+.follow-button__following {
+    background-color: red;
+    color: blue;;
+}
+
+.follow-button__unfollowing {
+    background-color: orange;
+    color: black;;
+}
