@@ -34,7 +34,7 @@ commentsRouter.delete('/:id', asyncHandler(async (req, res, next) =>{
   if (req.session.auth.userId !== comment.userId) {
     const errors = new Error("Unauthorized");
     errors.status = 401;
-    errors.message = "You are not authorized to delete this tweet.";
+    errors.message = "You are not authorized to delete this comment.";
     errors.title = "Unauthorized";
     console.log(errors);
     // res.json({errors})
