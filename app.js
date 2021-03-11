@@ -11,6 +11,7 @@ const usersRouter = require('./routes/users');
 const commentsRouter = require('./routes/api/comments')
 const storiesRouter = require('./routes/stories');
 const profileRouter = require(`./routes/profile`);
+const storiesApiRouter = require('./routes/api/stories')
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
 
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use('/stories', storiesRouter);
 app.use('/comments', commentsRouter);
 app.use(`/profile`, profileRouter)
+app.use("/stories/api", storiesApiRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

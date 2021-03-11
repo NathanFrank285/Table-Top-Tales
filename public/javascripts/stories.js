@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
   const delButton = document.querySelector(".confirmDelete__delete")
     delButton.addEventListener('click', async (event)=>{
       let storyId = event.target.id
-      try {const res = await fetch(`/stories/${storyId}`, {
+      try {const res = await fetch(`/stories/api/${storyId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
