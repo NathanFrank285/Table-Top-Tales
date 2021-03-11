@@ -19,7 +19,7 @@ block content
     div.main-profile
         div.stories
             each story in profileUser.Stories
-                div.story-container: a(href=`story/${story.id}`)
+                div.story-container: a(href=`../stories/${story.id}`)
                     div.story-picture
                         img(src= story.picture)
                     div.story-text-container
