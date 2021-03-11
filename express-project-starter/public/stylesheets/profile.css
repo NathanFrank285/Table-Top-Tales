@@ -3,3 +3,73 @@ body {
     background-color: #FAFAFA;
     font-family: 'Lora', serif;
 }
+
+a {
+    text-decoration: none;
+}
+
+.profile-container {
+    border: 1px solid black;
+    padding: 1em;
+    margin: 1em auto;
+    width: 80%;
+    height: 80%;
+}
+
+.top-profile {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar img{
+    height: 5em
+}
+
+.main-profile {
+    display: flex;
+    justify-content: space-between;
+    border: 1px dashed blue;;
+}
+
+.stories {
+    /* flex-grow: 2; */
+    /* width: 15em; */
+}
+
+.story-container {
+    margin: .5em;
+}
+
+.story-container a {
+    display: flex;
+    justify-content: space-between;
+    border: 1px dotted gray;
+    /* flex-direction: row; */
+}
+
+.text-container {
+    /* justify-self: flex-end; */
+}
+
+.story-picture img {
+    height: 10em;
+}
+
+.info {
+    margin: 1em;
+}
+
+.biography {
+
+    /* width: 45%; */
+}
+
+.follow-area {
+    display: flex;
+    justify-content: space-between;
+}
+
+.followers, .following {
+    margin: .5em;
+    /* border: 1px solid green; */
+}

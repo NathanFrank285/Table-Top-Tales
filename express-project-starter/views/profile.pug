@@ -4,40 +4,50 @@ append head
     link(rel="stylesheet" href="/stylesheets/profile.css")
 
 block content
-    div.top-profile
-        div.avatar
-            img(src=profileUser.avatarUrl)
-        div.username
-            h1= profileUser.username
-        if authenticated
-            if (locals.user.id !== profileUser.id)
+    div.profile-container
+        div.top-profile
+            div.avatar
+                img(src=profileUser.avatarUrl)
+            div.username
+                h1= profileUser.username
+            if authenticated
                 div.follow-button
-                    form(action="")
-                        button Follow
+                    if (locals.user.id !== profileUser.id)
+                        form(action="")
+                            button Follow
 
 
-    div.main-profile
-        div.stories
-            each story in profileUser.Stories
-                div.story-container: a(href=`../stories/${story.id}`)
-                    div.story-picture
-                        img(src= story.picture)
-                    div.story-text-container
-                        div.story-title
-                            h4= story.title
-                        div.username
-                            p= profileUser.username
-        div.info
-            div.biography
-                if profileUser.name
-                    h3= profileUser.name
-                p= profileUser.biography
-            div.follow-area
-                div.followers
-                    h5 Followers
-                    each follower in profileUser.follower
-                        p follower
-                div.following
-                    h5 Following
-                    each follow in profileUser.following
-                        p following
+        div.main-profile
+            div.stories
+                if profileUser.Stories[0]
+                    each story in profileUser.Stories
+                        div.story-container: a(href=`../stories/${story.id}`)
+                            div.story-picture
+                                img(src= story.picture)
+                            div.story-text-container
+                                div.story-title
+                                    h4= story.title
+                                div.username
+                                    p= profileUser.username
+                else
+                    h3 This user has no stories.
+            div.info
+                div.biography
+                    if profileUser.name
+                        h3= profileUser.name
+                    p= profileUser.biography
+                div.follow-area
+                    div.followers
+                        h5 Followers
+                            if profileUser.follower[0]
+                                each follower in profileUser.follower
+                                    p follower
+                            else
+                                p This user has no followers.
+                    div.following
+                        h5 Following
+                            if profileUser.following[0]
+                                each follow in profileUser.following
+                                    p following
+                            else
+                                p This user is not following anyone.
