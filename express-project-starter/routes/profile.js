@@ -27,7 +27,7 @@ profileRouter.get(`/:id`, asyncHandler(async (req, res) => {
 
     // console.log(`user`)
     // res.json(user)
-    res.render(`profile`, { profileUser, id })
+    res.render(`profile`, { profileUser, id, title: `Profile` })
 }))
 
 
