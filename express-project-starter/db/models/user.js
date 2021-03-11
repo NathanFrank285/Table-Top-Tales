@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       as: "likedStories",
       constraints: false,
     });
-
+    User.hasMany(models.Story, { foreignKey: `userId` })
     User.belongsToMany(models.Comment, {
       through: {
         model: "Like",

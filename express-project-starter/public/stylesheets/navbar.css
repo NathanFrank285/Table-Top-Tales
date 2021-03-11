@@ -1,3 +1,9 @@
+body {
+  color: #222222;
+  background-color: #FAFAFA;
+  font-family: 'Lora', serif;
+}
+
 .nav-outer-div {
   display: flex;
   background-color: #1c5d99;
@@ -24,6 +30,11 @@
   /* width: 30%; */
   display: flex;
   flex-direction: row;
+}
+
+.right a {
+  align-self: center;
+  justify-self: center;
 }
 
 .right img {
