@@ -16,7 +16,6 @@ a {
     display: flex;
     margin: 1em auto;
     padding: 1em;
-    border: 1px solid red;
     background-color: #1C5D99;
     justify-content: space-between;
     width: 80%;
