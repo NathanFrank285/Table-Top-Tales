@@ -1,22 +1,25 @@
 extends layout.pug
-include utils.pug
+append head
+  script(src="/javascripts/stories.js" type="module" defer)
 
+
+include utils.pug
   //- pass the story id to this page, if you click cancel will redirect to the story that you came from
   block content
     if authenticated
       if (locals.user.id === story.userId)
         h1 Are you sure you want to delete the #{story.title} story?
-          #confirmDelete
-            a(href=`/profile/${locals.user.id}`)
-              button#confirmDelete__delete Delete
-            a(href='/')   
-              button#confirmDelete__cancel Cancel
-    
+          .confirmDelete
+            //- a(href=`/profile/${locals.user.id}`)
+            button.confirmDelete__delete(id=`${story.id}`) Delete
+            a(href='/')
+              button.confirmDelete__cancel Cancel
 
-    
-    
-    
-    
+
+
+
+
+
     //- h3(class='pb-3'): em for #{park.parkName}
     //- +validationErrorSummary(errors)
     //- form(action=`/attraction/edit/${attraction.id}` method='post')

@@ -14,7 +14,7 @@ block content
     if (locals.user.id === story.author.id)
       //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
       #storybtns
-        a(href=href=`/stories/${story.id}/delete`)
+        a(href=`/stories/${story.id}/delete`)
           button#storybtns__delete delete
     else
       //- when a logged in user clicks follow, they will now be following the author the story
