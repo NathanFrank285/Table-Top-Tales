@@ -15,7 +15,7 @@ block content
       //- when a logged in user clicks follow, they will now be following the author the story
       //- #storybtns
       if (locals.user.id !== story.author.id)
-        button#storybtns__follow Follow
+        button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
         span.article__dateCreated= `${story.createdAt.toLocaleString("en", { month: "short"  })} ${story.createdAt.getDate()} · ${Math.ceil(story.body.split(" ").length/300)} min read`
     p= story.body
     #storybtns
@@ -29,6 +29,7 @@ block content
             button#storybtns__delete Delete
           
           
+      
       else
         //- #storybtns
         a(href="../users/login") Login to follow
