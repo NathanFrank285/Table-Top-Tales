@@ -3,7 +3,7 @@ const app = require('../../app');
 const commentsRouter = express.Router();
 const { csrfProtection, asyncHandler } = require('../../utils');
 const { loginUser, logoutUser, requireAuth, restoreUser } = require('../../auth');
-const { User, Story, Comment } = require('../../db/models')
+const { User, Story, Comment, Like } = require('../../db/models')
 const { check, validationResult } = require('express-validator');
 
 
@@ -30,7 +30,7 @@ commentsRouter.delete('/:id', asyncHandler(async (req, res, next) =>{
   const id = req.params.id;
   const comment = await Comment.findByPk(id);
 
-  //todo populate errors on the page when deleted by an unauthorized user
+  
   if (req.session.auth.userId !== comment.userId) {
     const errors = new Error("Unauthorized");
     errors.status = 401;
@@ -39,10 +39,13 @@ commentsRouter.delete('/:id', asyncHandler(async (req, res, next) =>{
     console.log(errors);
     // res.json({errors})
   }
+  await Like.destroy({
+    where: { likeableId: comment.id, likeableType: "comment" },
+  });
 
-  await comment.destroy()
-  res.json({})
-//   res.json('you can delete this tweet')
+  await comment.destroy();
+  res.json({});
+  //   res.json('you can delete this tweet')
 }))
 
 

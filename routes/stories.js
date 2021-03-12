@@ -62,15 +62,20 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
     include: { model: User },
     order: [["id", "ASC"]]
   });
-  res.locals.userId = req.session.auth.userId;
 
 
   res.render("story-view", { story, comments });
   // res.json(res.locals)
 }))
 
-storiesRouter.delete('/:id/delete', asyncHandler(async (req, res) => {
-  //todo 
+storiesRouter.get('/:id/delete', asyncHandler(async (req, res) => {
+  const storyId = req.params.id;
+  const story = await Story.findByPk(storyId)
+  if(!res.locals.authenticated || res.locals.user.id !== story.userId ){
+    res.redirect('/')
+  } else {
+    res.render('story-delete', { story })
+  }
 
 }))
 

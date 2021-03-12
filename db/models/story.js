@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     hook: DataTypes.STRING
   }, {});
   Story.associate = function (models) {
-    Story.hasMany(models.Comment, { foreignKey: "storyId" });
+    Story.hasMany(models.Comment, { foreignKey: "storyId", onDelete: "CASCADE", hooks: true });
+    
     Story.belongsTo(models.User, {
       foreignKey: "userId",
       as: "author"

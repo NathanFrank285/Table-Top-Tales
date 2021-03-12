@@ -1,0 +1,23 @@
+const express = require("express");
+const storiesApiRouter = express.Router();
+const { csrfProtection, asyncHandler } = require("../../utils");
+const { loginUser, logoutUser, requireAuth, restoreUser } = require("../../auth");
+const { User, Story, Comment, Like } = require("../../db/models");
+const { check, validationResult } = require("express-validator");
+
+storiesApiRouter.delete(
+  "/:id",
+  asyncHandler(async (req, res, next) => {
+    const storyId = req.params.id;
+    // delet ib kujes where likeable id matches story and the likeabletype is story findall and delete
+    const story = await Story.findByPk(storyId);
+    const userId = story.userId;
+    await Like.destroy({where:{likeableId: story.id, likeableType: 'story'}})
+    await story.destroy();
+
+    res.json({ userId });
+  })
+);
+
+
+module.exports = storiesApiRouter;
