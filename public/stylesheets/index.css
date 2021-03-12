@@ -4,12 +4,12 @@ body {
     font-family: 'Lora', serif;
 }
 
-h1 {
-    /* color: #555555; */
-}
-
 a {
     text-decoration: none;
+}
+
+div, img {
+    border-radius: .5em;
 }
 
 .top-stories {
@@ -19,6 +19,7 @@ a {
     background-color: #1C5D99;
     justify-content: space-between;
     width: 80%;
+    /* border-radius: .5em; */
 }
 
 .main-story {

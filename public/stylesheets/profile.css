@@ -8,6 +8,10 @@ a {
     text-decoration: none;
 }
 
+div, img {
+    border-radius: .5em;
+}
+
 .profile-container {
     border: 1px solid black;
     padding: 1em;
