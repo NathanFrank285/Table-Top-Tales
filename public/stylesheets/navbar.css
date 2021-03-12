@@ -52,7 +52,9 @@ a {
   color: rgb(209, 213, 218)
 }
 
-
+.title-text {
+  font-family: 'Cinzel', serif;
+}
 
 .right {
   /* width: 30%; */

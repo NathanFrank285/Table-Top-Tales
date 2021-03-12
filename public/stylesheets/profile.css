@@ -13,7 +13,9 @@ div, img {
 }
 
 .profile-container {
-    border: 1px solid black;
+    border: 1px solid #222222;
+    background-color: #a9c3e6;
+    box-shadow: 1px 1px 4px #222222;
     padding: 1em;
     margin: 1em auto;
     width: 80%;
@@ -23,31 +25,72 @@ div, img {
 .top-profile {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.avatar {
+    /* background-color: #BBCDE5; */
 }
 
 .avatar img{
-    height: 5em
+    height: 5em;
+    margin: 0 1em;
+    background-color: #BBCDE5;
+}
+
+.username h1 {
+    font-size: 3.5em;
+    font-family: 'Cinzel', serif;
+    text-shadow: 1px 1px 2px #222222;
 }
 
 .main-profile {
     display: flex;
     justify-content: space-between;
-    border: 1px dashed blue;;
+    border: 1px solid #222222;
+    background-color: #BBCDE5;
+    box-shadow: 1px 1px 4px #154572;
 }
 
 .stories {
     /* flex-grow: 2; */
     /* width: 15em; */
+    /* border: 1px solid #222222; */
+    width: 31em;
+    margin: .5em;
+    /* overflow-y: auto; */
 }
 
 .story-container {
     margin: .5em;
+    /* padding: .5em; */
+    width: 30em;
+    /* height: 10em; */
+
+}
+
+.story-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin: .5em;
+}
+
+.story-title h4 {
+    font-size: 1.5em;
+    text-align: end;
 }
 
 .story-container a {
     display: flex;
     justify-content: space-between;
-    border: 1px dotted gray;
+    border: 1px solid #222222;
+    background-color: #ccd7e6;
+    box-shadow: 1px 1px 4px #154572;
+    padding: .5em;
+    border-radius: .5em;
+    min-height: 10em;
     /* flex-direction: row; */
 }
 
@@ -61,11 +104,19 @@ div, img {
 
 .info {
     margin: 1em;
+    width: 60%;
 }
 
 .biography {
-
+    border: 1px solid #222222;
+    padding: .5em;
+    background-color: #ccd7e6;
+    box-shadow: 1px 1px 4px #154572;
     /* width: 45%; */
+}
+
+.bio-name {
+    margin-bottom: 1em;
 }
 
 .follow-area {
@@ -75,19 +126,37 @@ div, img {
 
 .followers, .following {
     margin: .5em;
-    /* border: 1px solid green; */
+    border: 1px solid #222222;
+    background-color: #ccd7e6;
+    box-shadow: 1px 1px 4px #154572;
+    width: 45%;
+    height: 15em;
+    overflow-y: auto;
 }
 
 .follow-button__following {
-    background-color: red;
-    color: blue;;
+    margin: .25em .5em;
+    border-radius: .25rem;
+    padding: .5em;
+    width: 5em;
+    font-size: 1.2em;
+    background-color: #0b7425;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
 }
 
 .follow-button__unfollowing {
-    background-color: orange;
-    color: black;;
+    margin: .25em .5em;
+    border-radius: .25rem;
+    padding: .5em;
+    width: 5em;
+    font-size: 1.2em;
+    background-color: #7c1a01;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
 }
 
 .follow-avatar {
     height: 3em;
+    margin: .5em;
 }

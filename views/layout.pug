@@ -18,8 +18,8 @@ html
               div.logo-background
                 img(src='/images/darkbluedragonlogo.png').website-logo
                 p.website-logo-text Table Top Tales
-          div
-            h1= title
+          div.title-div
+            h1.title-text= title
         div.right
           a(href= `/stories/new`): button Create a story
           a(href= `/profile/${user.id}`): img(src= locals.user.avatarUrl)
@@ -34,8 +34,8 @@ html
               div.logo-background
                 img(src='/images/darkbluedragonlogo.png').website-logo
                 p.website-logo-text Table Top Tales
-          div
-            h1= title
+          div.title-div
+            h1.title-text= title
         div.right
           div.auth-btns
             a(href="/users/login"): button.button(type="button" ) Login

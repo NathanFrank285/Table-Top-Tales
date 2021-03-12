@@ -21,22 +21,24 @@ block content
         div.main-profile
             div.stories
                 if profileUser.Stories[0]
-                    each story in profileUser.Stories
-                        div.story-container: a(href=`../stories/${story.id}`)
-                            div.story-picture
-                                img(src= story.picture)
-                            div.story-text-container
-                                div.story-title
-                                    h4= story.title
-                                div.username
-                                    p= profileUser.username
+                    div
+                        each story in profileUser.Stories
+                            div.story-container: a(href=`../stories/${story.id}`)
+                                div.story-picture
+                                    img(src= story.picture)
+                                div.story-text-container
+                                    div.story-title
+                                        h4= story.title
+                                    div.username
+                                        p= profileUser.username
                 else
                     h3 This user has no stories.
             div.info
                 div.biography
                     if profileUser.name
-                        h3= profileUser.name
-                    p= profileUser.biography
+                        h3.bio-name Name: #{profileUser.name}
+                    h3.bio-logo Biography:
+                    p.bio-text= profileUser.biography
                 div.follow-area
                     div.followers
                         h5 Followers
