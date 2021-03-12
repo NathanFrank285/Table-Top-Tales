@@ -1,11 +1,7 @@
 // const commentsRouter = require("../../routes/api/comments")
 
-<<<<<<< HEAD
-window.addEventListener('DOMContentLoaded', async (event) => {
-=======
 window.addEventListener('DOMContentLoaded', async(event)=>{
     //* Deleting a Story
->>>>>>> refs/remotes/origin/profile
 
     // document
     //   .getElementById("storybtns__delete")
@@ -48,8 +44,6 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
     const textBox = document.querySelector(".newComment__text");
     const storyId = textBox.getAttribute("storyid");
     const commentBody = textBox.value;
-
-    // toDo - how to verify that the person sending this comment is logged in?
 
     const body = { commentBody, storyId };
     try {
