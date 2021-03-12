@@ -38,6 +38,9 @@ block content
         br
         if authenticated && (locals.user.id === comment.userId)
           button.comment__delete(id=`${comment.id}`) Delete Comment
+        if authenticated && (locals.user.id !== comment.userId)
+          button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`) Like Comment
+
   if authenticated
     div.newComment
       textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5")
