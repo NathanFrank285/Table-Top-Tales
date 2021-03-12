@@ -15,10 +15,11 @@ likesRouter.post(
   `/new`,
   asyncHandler(async (req, res) => {
     const { userId, likeableId, likeableType } = req.body;
-
+    
+    // console.log('I made it lol')
     //todo search that this like does not already exist, if not, create it
-    let likeAlive = await findOne({where: {userId, likeableId, likeableType}})
-    console.log("DOES THIS LIKE EXIST",likeAlive);
+    // let likeAlive = await findOne({where: {userId, likeableId, likeableType}})
+    // console.log("DOES THIS LIKE EXIST",likeAlive);
 
     let like = await Like.create({ userId, likeableId, likeableType });
 

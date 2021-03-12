@@ -12,7 +12,7 @@ block content
   p= story.body
   #storybtns
     if authenticated
-      button#storybtns__like(data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story
+      button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story
 
       if (locals.user.id === story.author.id)
         //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page

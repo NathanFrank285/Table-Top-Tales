@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
       const likeableType = likeButton.dataset["likeabletype"];
       console.log(userId, likeableId, likeableType);
       const body = {userId, likeableId, likeableType};
-
+      
       const res = await fetch("/likes/api/new", {
         method: "POST",
         body: JSON.stringify(body),
