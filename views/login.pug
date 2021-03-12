@@ -6,12 +6,15 @@ append head
 include utils.pug
 
 block content
-    div.main-container
-        div.errors
-            if errors
+    if errors
+        div.outer
+            div.errors
+                p The following errors occurred:
                 ul
                     each error in errors
                         li= error
+                        
+    div.main-container
         div.login-div
             form(action='/users/login' method="POST").login-form
                 input(type="hidden", name="_csrf" value=csrfToken)

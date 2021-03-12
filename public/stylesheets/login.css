@@ -53,3 +53,13 @@
     color: rgb(209, 213, 218);
     border: 3px solid rgb(209, 213, 218);
 }
+
+.outer {
+  display: flex;
+  justify-content: center;
+}
+
+.errors {
+  text-align: center;
+  color: red;
+}
