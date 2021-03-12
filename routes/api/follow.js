@@ -7,7 +7,8 @@ const { User, Follow } = require('../../db/models')
 const { check, validationResult } = require('express-validator');
 
 followRouter.post(`/new-follow`, asyncHandler(async (req, res) => {
-    const { userId, followerId } = req.body;
+    const { followerId } = req.body;
+    const userId = req.session.auth.userId
     if (userId === followerId) {
         const err = { msg: `You're ridiculous. You know exactly what you're doing and we don't appreciate it.` }
         return res.json(err);
@@ -20,12 +21,18 @@ followRouter.post(`/new-follow`, asyncHandler(async (req, res) => {
 }))
 
 followRouter.delete(`/delete-follow`, asyncHandler(async (req, res) => {
-    const { userId, followerId } = req.body;
+    const { followerId } = req.body;
+    const userId = req.session.auth.userId
+    console.log('--------------------------------------------------------------------', followerId, userId)
     const deleteFollower = await Follow.findOne({
         where: { userId, followerId }
     });
-    deleteFollower.destroy();
-    res.json(`Deleted`);
+    if (deleteFollower) {
+        await deleteFollower.destroy();
+        return res.json(`Deleted`);
+    } else {
+        return res.json("No user exists")
+    }
 }))
 
 
