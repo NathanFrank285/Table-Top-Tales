@@ -30,6 +30,11 @@ input, textarea {
   width: 85%;
   padding: 0.7rem;
   font-size: 1.2rem;
+  border: 2px solid #222222;
+}
+
+textarea {
+  height: 7rem;
 }
 
 .regbtn {
