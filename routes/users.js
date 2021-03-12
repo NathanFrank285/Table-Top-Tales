@@ -119,6 +119,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
   const validatorErrors = validationResult(req);
 
   let errors = [];
+  console.log(`1111111111111111111111111111111111111111111111111111111111111111111111`, validatorErrors.isEmpty())
   if (validatorErrors.isEmpty()) {
     const user = await User.findOne({ where: { username } });
 
@@ -134,9 +135,17 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
         })
 
       }
+      else {
+        errors.push('Login failed for the provided username and password');
+        res.render('login', {
+          title: 'Login',
+          username,
+          errors,
+          csrfToken: req.csrfToken(),
+        });
+      }
+    } else {
       errors.push('Login failed for the provided username and password');
-    }else {
-      errors = validatorErrors.array().map((error) => error.msg)
       res.render('login', {
         title: 'Login',
         username,
@@ -145,6 +154,16 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
       });
     }
 
+  }
+  else {
+    errors = validatorErrors.array().map((error) => error.msg)
+    console.log(`-------------------------------------------`, errors)
+    res.render('login', {
+      title: 'Login',
+      username,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
   }
 }))
 

@@ -1,8 +1,8 @@
 
 mixin validationErrorSummary(errors)
   if errors
-    //- change classes and role 
-    div(class='alert alert-danger' role='alert') 
+    //- change classes and role
+    div(class='alert alert-danger' role='alert')
       p The following error(s) occurred:
       ul
         each error in errors
@@ -10,8 +10,8 @@ mixin validationErrorSummary(errors)
 
 mixin field(labelText, fieldName, fieldValue, require = false, fieldType = 'text', placeholder = null)
   div(class='form-group')
-    label(for=fieldName)= labelText
+    //- label(for=fieldName)= labelText
     if fieldType === 'textarea'
-      textarea(id=fieldName name=fieldName class='form-control' required= require)= fieldValue
+      textarea(id=fieldName name=fieldName class='form-control' required= require placeholder= labelText)= fieldValue
     else
-      input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder class='form-control' required= require)
+      input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=labelText class='form-control' required= require)

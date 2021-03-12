@@ -24,10 +24,14 @@ html
               button(type="submit") Logout
     else
       div.nav-outer-div
-        div.logo
-           a(href="/"): img(src='https://roll20.net/v3/assets/img/logos/fiasco.png')
-        div.auth-btns
-          a(href="/users/login"): button.button(type="button" ) Login
-          a(href="/users/signup"): button.button(type="button" ) Signup
+        div.left
+          div.logo
+            a(href="/"): img(src='https://roll20.net/v3/assets/img/logos/fiasco.png')
+          div
+            h1= title
+        div.right
+          div.auth-btns
+            a(href="/users/login"): button.button(type="button" ) Login
+            a(href="/users/signup"): button.button(type="button" ) Signup
 
     block content
