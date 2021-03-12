@@ -30,7 +30,7 @@ profileRouter.get(`/:id`, asyncHandler(async (req, res) => {
     const followingArr = profileUser.following.map(obj => {
         return obj.id
     })
-
+    console.log(profileUser.id, '********************************************************')
     let followData;
     let answer;
 
