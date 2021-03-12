@@ -14,9 +14,9 @@ block content
             if authenticated
                 div.follow-div
                     if (locals.user.id !== profileUser.id)
-                        form(action="")                        
+                        form(action="")
                             button#follow-button(class= "follow-button__following" data-localuser= locals.user.id data-profileuser= profileUser.id data-answer= answer)= followData
-                            
+
 
         div.main-profile
             div.stories
@@ -40,15 +40,17 @@ block content
                 div.follow-area
                     div.followers
                         h5 Followers
-                            if profileUser.follower[0]
-                                each follower in profileUser.follower
-                                    p follower
-                            else
-                                p This user has no followers.
+                        if profileUser.following[0]
+                            each follower in profileUser.following
+                                a(href=`/profile/${follower.id}`)
+                                    img.follow-avatar(src= follower.avatarUrl)
+                        else
+                            p This user has no followers.
                     div.following
                         h5 Following
-                            if profileUser.following[0]
-                                each follow in profileUser.following
-                                    p following
-                            else
-                                p This user is not following anyone.
+                        if profileUser.follower[0]
+                            each follow in profileUser.follower
+                                a(href=`/profile/${follow.id}`)
+                                    img.follow-avatar(src= follow.avatarUrl)
+                        else
+                            p This user is not following anyone.

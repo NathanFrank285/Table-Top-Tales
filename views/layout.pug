@@ -17,6 +17,7 @@ html
           div
             h1= title
         div.right
+          a(href= `/stories/new`): button Create a story
           a(href= `/profile/${user.id}`): img(src= locals.user.avatarUrl)
           div.form
             form(action='/users/logout' method="POST")
