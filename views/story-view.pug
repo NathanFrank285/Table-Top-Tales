@@ -23,7 +23,7 @@ block content
       else
         //- when a logged in user clicks follow, they will now be following the author the story
         //- #storybtns
-        button#storybtns__follow follow
+        button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
     else
       //- #storybtns
       a(href="../users/login") Login to follow
