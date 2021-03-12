@@ -1,11 +1,14 @@
 .follow-button__following {
     background-color: red;
-    color: blue;;
+    color: blue;
+    border: ;
+    padding: 
 }
 
 .follow-button__unfollowing {
     background-color: orange;
-    color: black;;
+    color: black;
+    
 }
 
 
@@ -18,3 +21,42 @@
     background-color: orange;
     color: black;
 }
+
+.article {
+    margin: 25px 30px; 
+
+}
+
+.article__title {
+    font-family: fell, Georgia, Cambria, “Times New Roman”, Times, serif;
+    font-size: 48px;
+    color: #292929;
+
+}
+
+.article__description {
+    font-size: 20px;
+    color: #757575;
+    font-family: sohne, “Helvetica Neue”, Helvetica, Arial, sans-serif;
+}
+
+.article__author {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+.authorBar {
+    display: grid;
+    
+    width: auto;
+
+}
+
+#storybtns__follow {
+    width: 75px
+
+}
+
+
+
+
