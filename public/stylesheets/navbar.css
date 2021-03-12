@@ -8,9 +8,31 @@ a {
     text-decoration: none;
 }
 
+.logo-background{
+  display: flex;
+  background-color: #FAFAFA;
+  height: 3em;
+  width: 12.5em;
+  border-radius: .5em;
+  margin: 1em auto;
+  margin-left: 1em;
+}
+
+.website-logo{
+  height: 2.5em;
+  width: 2.5em;
+}
+
+.website-logo-text {
+  color: #1c5d99;
+  font-family: 'Cinzel', serif;
+}
+
 .nav-outer-div {
   display: flex;
+  height: 5em;
   background-color: #1c5d99;
+  border-radius: 0em;
   justify-content: space-between;
 }
 
@@ -18,16 +40,21 @@ a {
   /* width: 30%; */
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
-.left img {
+/* .left img {
   margin: .25em .5em;
   border-radius: 1em;
-}
+} */
 
 .left h1 {
   margin: .25em .5em;
   color: rgb(209, 213, 218)
+}
+
+.title-text {
+  font-family: 'Cinzel', serif;
 }
 
 .right {

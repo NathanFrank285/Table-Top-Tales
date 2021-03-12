@@ -114,11 +114,30 @@ const loginValidators = [
 ];
 
 router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, password, guest_login } = req.body;
+
+  if (guest_login === 'true') {
+    let guest_user = await User.findOne({
+      where: { email: 'demo@demo.com' }
+    })
+    if (!guest_user) {
+      guest_user = User.build({ email: 'demo@demo.com', name: 'demo', password: "demo", username: "demo", avatarUrl: "https://vignette.wikia.nocookie.net/theworldofblueteam/images/c/c2/1311156434_3.jpg/revision/latest/scale-to-width-down/180?cb=20140509155200", biography: "This is a Guest User" })
+      const hashedPassword = await bcrypt.hash('password', 8);
+      guest_user.hashedPassword = hashedPassword
+
+      await guest_user.save()
+    }
+    loginUser(req, res, guest_user)
+    return req.session.save(() => {
+      res.redirect('/')
+    })
+  }
+
 
   const validatorErrors = validationResult(req);
 
   let errors = [];
+
   if (validatorErrors.isEmpty()) {
     const user = await User.findOne({ where: { username } });
 
@@ -134,9 +153,17 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
         })
 
       }
+      else {
+        errors.push('Login failed for the provided username and password');
+        res.render('login', {
+          title: 'Login',
+          username,
+          errors,
+          csrfToken: req.csrfToken(),
+        });
+      }
+    } else {
       errors.push('Login failed for the provided username and password');
-    }else {
-      errors = validatorErrors.array().map((error) => error.msg)
       res.render('login', {
         title: 'Login',
         username,
@@ -145,6 +172,16 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
       });
     }
 
+  }
+  else {
+    errors = validatorErrors.array().map((error) => error.msg)
+
+    res.render('login', {
+      title: 'Login',
+      username,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
   }
 }))
 

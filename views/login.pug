@@ -1,14 +1,24 @@
 extends layout
 
+append head
+    link(rel="stylesheet", href="/stylesheets/login.css")
+
 include utils.pug
 
 block content
     if errors
-        ul
-            each error in errors
-                li= error
-    form(action='/users/login' method="POST")
-        input(type="hidden", name="_csrf" value=csrfToken)
-        +field("Username", "username", username, true)
-        +field("Password", "password", "", true, "password")
-        button(type="submit") Login
+        div.outer
+            div.errors
+                p The following errors occurred:
+                ul
+                    each error in errors
+                        li= error
+                        
+    div.main-container
+        div.login-div
+            form(action='/users/login' method="POST").login-form
+                input(type="hidden", name="_csrf" value=csrfToken)
+                +field("Username", "username", username, false).username
+                +field("Password", "password", "", false, "password").password
+                button.login(type="submit") Login
+                button.login(type="submit" name="guest_login" value="true") Log in as Guest

@@ -7,15 +7,19 @@ html
         link(rel='stylesheet' href='/stylesheets/navbar.css')
         link(rel="preconnect" href="https://fonts.gstatic.com")
         link(href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet")
   body
 
     if locals.authenticated
       div.nav-outer-div
         div.left
-          div
-            a(href="/"): img(src='https://roll20.net/v3/assets/img/logos/fiasco.png')
-          div
-            h1= title
+          div.logo
+            a(href="/")
+              div.logo-background
+                img(src='/images/darkbluedragonlogo.png').website-logo
+                p.website-logo-text Table Top Tales
+          div.title-div
+            h1.title-text= title
         div.right
           a(href= `/stories/new`): button Create a story
           a(href= `/profile/${user.id}`): img(src= locals.user.avatarUrl)
@@ -24,10 +28,17 @@ html
               button(type="submit") Logout
     else
       div.nav-outer-div
-        div.logo
-           a(href="/"): img(src='https://roll20.net/v3/assets/img/logos/fiasco.png')
-        div.auth-btns
-          a(href="/users/login"): button.button(type="button" ) Login
-          a(href="/users/signup"): button.button(type="button" ) Signup
+        div.left
+          div.logo
+            a(href="/")
+              div.logo-background
+                img(src='/images/darkbluedragonlogo.png').website-logo
+                p.website-logo-text Table Top Tales
+          div.title-div
+            h1.title-text= title
+        div.right
+          div.auth-btns
+            a(href="/users/login"): button.button(type="button" ) Login
+            a(href="/users/signup"): button.button(type="button" ) Signup
 
     block content
