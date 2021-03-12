@@ -13,8 +13,11 @@ html
     if locals.authenticated
       div.nav-outer-div
         div.left
-          div
-            a(href="/"): img(src='https://roll20.net/v3/assets/img/logos/fiasco.png')
+          div.logo-background
+            a(href="/")
+              div
+                img(src='/images/darkbluedragonlogo.png').website-logo
+                p.website-logo-text Table Top Tales
           div
             h1= title
         div.right
@@ -27,7 +30,10 @@ html
       div.nav-outer-div
         div.left
           div.logo
-            a(href="/"): img(src='https://roll20.net/v3/assets/img/logos/fiasco.png')
+            a(href="/")
+              div.logo-background
+                img(src='/images/darkbluedragonlogo.png').website-logo
+                p.website-logo-text Table Top Tales
           div
             h1= title
         div.right
