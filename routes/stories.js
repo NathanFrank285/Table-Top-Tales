@@ -2,7 +2,7 @@ const express = require('express')
 const storiesRouter = express.Router();
 const { csrfProtection, asyncHandler } = require('../utils');
 const { loginUser, logoutUser, requireAuth, restoreUser } = require('../auth');
-const { User, Story, Comment } = require('../db/models')
+const { User, Story, Comment, Like } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 
 
@@ -62,9 +62,15 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
     include: { model: User },
     order: [["id", "ASC"]]
   });
+  let bool = false;
+  if(req.session.auth){
+    bool = await Like.findOne({where: { userId: req.session.auth.userId, likeableId: storyId, likeableType: "story"}})
+  } 
+  bool ? bool = true:bool = false 
+  
 
 
-  res.render("story-view", { story, comments });
+  res.render("story-view", { story, comments, bool });
   // res.json(res.locals)
 }))
 
