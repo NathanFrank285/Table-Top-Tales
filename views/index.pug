@@ -24,7 +24,7 @@ block content
       div.story-info
         span #{months[topStory.createdAt.getMonth()]} #{topStory.createdAt.getDate()}
         span= `${Math.ceil(topStory.body.split(' ').length/300)} min read`
-        span= topStory.likingUsers.length
+        span= `${topStory.likingUsers.length} likes`
 
 
     div.top-four

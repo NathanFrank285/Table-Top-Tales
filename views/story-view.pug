@@ -3,25 +3,29 @@ include utils.pug
 block content
   append head
     script(src="/javascripts/comments.js" type="module" defer)
+    script(src="/javascripts/likes.js" type="module" defer)
+    link(rel="stylesheet" href="/stylesheets/stories.css")
   +validationErrorSummary(errors)
 
   h1= story.title
   p= story.author.username
   p= story.hook
   p= story.body
+  #storybtns
+    if authenticated
+      button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story
 
-  if authenticated
-    if (locals.user.id === story.author.id)
-      //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
-      #storybtns
+      if (locals.user.id === story.author.id)
+        //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
+        //- #storybtns
         a(href=`/stories/${story.id}/delete`)
           button#storybtns__delete delete
-    else
-      //- when a logged in user clicks follow, they will now be following the author the story
-      #storybtns
+      else
+        //- when a logged in user clicks follow, they will now be following the author the story
+        //- #storybtns
         button#storybtns__follow follow
-  else
-    #storybtns
+    else
+      //- #storybtns
       a(href="../users/login") Login to follow
 
   h1 Comment section

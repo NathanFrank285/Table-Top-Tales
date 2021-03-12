@@ -1,0 +1,20 @@
+.follow-button__following {
+    background-color: red;
+    color: blue;;
+}
+
+.follow-button__unfollowing {
+    background-color: orange;
+    color: black;;
+}
+
+
+.liked-true {
+    background-color: red;
+    color:  blue;
+}
+
+.liked-false {
+    background-color: orange;
+    color: black;
+}
