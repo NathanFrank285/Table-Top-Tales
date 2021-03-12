@@ -2,7 +2,7 @@ const express = require('express')
 const storiesRouter = express.Router();
 const { csrfProtection, asyncHandler } = require('../utils');
 const { loginUser, logoutUser, requireAuth, restoreUser } = require('../auth');
-const { User, Story, Comment } = require('../db/models')
+const { User, Story, Comment, Like } = require('../db/models')
 const { check, validationResult } = require('express-validator');
 
 

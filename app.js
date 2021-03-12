@@ -13,6 +13,8 @@ const storiesRouter = require('./routes/stories');
 const profileRouter = require(`./routes/profile`);
 const followRouter = require(`./routes/api/follow`);
 const storiesApiRouter = require('./routes/api/stories')
+const likesRouter = require("./routes/api/likes");
+
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
 
@@ -46,13 +48,15 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/stories', storiesRouter);
 app.use(`/profile`, profileRouter);
+app.use(`/follow`, followRouter);
+app.use(`/profile`, profileRouter)
 
 // These are API routes
+//todo change all of the comment routes to be comments/api/
 app.use('/comments', commentsRouter);
-app.use(`/follow`, followRouter);
-
-app.use(`/profile`, profileRouter)
 app.use("/stories/api", storiesApiRouter);
+app.use('/likes/api/', likesRouter)
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
