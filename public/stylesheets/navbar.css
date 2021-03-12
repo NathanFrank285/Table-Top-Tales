@@ -4,6 +4,10 @@ body {
   font-family: 'Lora', serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 .nav-outer-div {
   display: flex;
   background-color: #1c5d99;
