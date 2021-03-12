@@ -15,6 +15,7 @@ block content
         div.login-div
             form(action='/users/login' method="POST").login-form
                 input(type="hidden", name="_csrf" value=csrfToken)
-                +field("Username", "username", username, true).username
-                +field("Password", "password", "", true, "password").password
+                +field("Username", "username", username, false).username
+                +field("Password", "password", "", false, "password").password
                 button.login(type="submit") Login
+                button.login(type="submit" name="guest_login" value="true") Log in as Guest
