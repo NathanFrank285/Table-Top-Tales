@@ -1,7 +1,11 @@
 // const commentsRouter = require("../../routes/api/comments")
 
+<<<<<<< HEAD
+window.addEventListener('DOMContentLoaded', async (event) => {
+=======
 window.addEventListener('DOMContentLoaded', async(event)=>{
     //* Deleting a Story
+>>>>>>> refs/remotes/origin/profile
 
     // document
     //   .getElementById("storybtns__delete")
@@ -13,7 +17,7 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
 
     //   });
 
-    //* Deleting a comment
+  //* Deleting a comment
   document.addEventListener("click", async (event) => {
     const delbuttonClass = event.target.className;
     const deleteId = event.target.id;
@@ -26,11 +30,12 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
           headers: { "Content-Type": "application/json" },
         })
 
-          if (!res.ok) {
-            throw res;
-          } else{
-            const div = document.getElementById(`comment-${event.target.id}`)
-          div.remove()};
+        if (!res.ok) {
+          throw res;
+        } else {
+          const div = document.getElementById(`comment-${event.target.id}`)
+          div.remove()
+        };
       } catch (err) {
         console.error(err);
       }
@@ -66,7 +71,7 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
             `;
 
       commentUl.appendChild(commentDiv);
-    } catch (error) {}
+    } catch (error) { }
     textBox.value = "";
   });
 })

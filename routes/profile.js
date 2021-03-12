@@ -6,7 +6,6 @@ const { asyncHandler } = require('../utils');
 
 profileRouter.get(`/:id`, asyncHandler(async (req, res) => {
     const { id } = req.params
-    const loggedinUser = req.session.auth.userId;
 
     const profileUser = await User.findByPk(id, {
         include: [
@@ -34,12 +33,17 @@ profileRouter.get(`/:id`, asyncHandler(async (req, res) => {
     let followData;
     let answer;
 
-    if (followingArr.includes(loggedinUser)) {
-        followData = "unfollow";
-        answer = "true";
-    } else {
-        followData = "follow";
-        answer = "false";
+    if (req.session.auth) {
+        const loggedinUser = req.session.auth.userId;
+
+
+        if (followingArr.includes(loggedinUser)) {
+            followData = "unfollow";
+            answer = "true";
+        } else {
+            followData = "follow";
+            answer = "false";
+        }
     }
 
     console.log("==================================================================================", answer);

@@ -83,3 +83,7 @@ a {
     background-color: orange;
     color: black;;
 }
+
+.follow-avatar {
+    height: 3em;
+}
