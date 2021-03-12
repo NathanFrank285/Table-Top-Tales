@@ -16,37 +16,30 @@ likesRouter.post(
   asyncHandler(async (req, res) => {
     const { userId, likeableId, likeableType } = req.body;
     
-    // console.log('I made it lol')
+    
     //todo search that this like does not already exist, if not, create it
     // let likeAlive = await findOne({where: {userId, likeableId, likeableType}})
     // console.log("DOES THIS LIKE EXIST",likeAlive);
 
     let like = await Like.create({ userId, likeableId, likeableType });
 
-    // if (userId === followerId) {
-    //   const err = {
-    //     msg: `You're ridiculous. You know exactly what you're doing and we don't appreciate it.`,
-    //   };
-    //   return res.json(err);
-    // }
-    // const makeFollower = await Follow.create({
-    //   userId,
-    //   followerId,
-    // });
-    res.json( {like} );
+    
+    res.json({});
   })
 );
 
-// likeRouter.delete(
-//   `/delete-follow`,
-//   asyncHandler(async (req, res) => {
-//     const { userId, followerId } = req.body;
-//     const deleteFollower = await Follow.findOne({
-//       where: { userId, followerId },
-//     });
-//     deleteFollower.destroy();
-//     res.json(`Deleted`);
-//   })
-// );
+
+likesRouter.delete(
+  `/unlike`,
+  asyncHandler(async (req, res) => {
+    const { userId, likeableId, likeableType } = req.body;
+    let like = await Like.findOne({where: {userId, likeableId, likeableType}})
+    
+    // let like = await Like.create({ userId, likeableId, likeableType });
+    await like.destroy()
+    
+    res.json({});
+  })
+);
 
 module.exports = likesRouter;

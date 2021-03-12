@@ -62,8 +62,12 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next)=> {
     include: { model: User },
     order: [["id", "ASC"]]
   });
-  let bool = await Like.findOne({where: { userId: req.session.auth.userId, likeableId: storyId, likeableType: "story"}})
+  let bool = false;
+  if(req.session.auth){
+    bool = await Like.findOne({where: { userId: req.session.auth.userId, likeableId: storyId, likeableType: "story"}})
+  } 
   bool ? bool = true:bool = false 
+  
 
 
   res.render("story-view", { story, comments, bool });

@@ -7,3 +7,14 @@
     background-color: orange;
     color: black;;
 }
+
+
+.liked-true {
+    background-color: red;
+    color:  blue;
+}
+
+.liked-false {
+    background-color: orange;
+    color: black;
+}

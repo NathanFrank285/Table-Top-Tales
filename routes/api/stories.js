@@ -9,7 +9,7 @@ storiesApiRouter.delete(
   "/:id",
   asyncHandler(async (req, res, next) => {
     const storyId = req.params.id;
-    // delet ib kujes where likeable id matches story and the likeabletype is story findall and delete
+    
     const story = await Story.findByPk(storyId);
     const userId = story.userId;
     await Like.destroy({where:{likeableId: story.id, likeableType: 'story'}})
