@@ -7,7 +7,7 @@ block content
     link(rel="stylesheet" href="/stylesheets/stories.css")
   +validationErrorSummary(errors)
   article.article
-    h1.article__title= story.title    
+    h1.article__title= story.title
     p.article__description= story.hook
     div.authorBar
       img.authorBar__pic(src=story.author.avatarUrl)
@@ -17,6 +17,9 @@ block content
       if (locals.user.id !== story.author.id)
         button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
         span.article__dateCreated= `${story.createdAt.toLocaleString("en", { month: "short"  })} ${story.createdAt.getDate()} · ${Math.ceil(story.body.split(" ").length/300)} min read`
+
+    img.article__picture(src=story.picture)
+
     p= story.body
     #storybtns
       if authenticated
@@ -27,9 +30,9 @@ block content
           //- #storybtns
           a(href=`/stories/${story.id}/delete`)
             button#storybtns__delete Delete
-          
-          
-      
+
+
+
       else
         //- #storybtns
         a(href="../users/login") Login to follow

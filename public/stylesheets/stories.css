@@ -1,6 +1,3 @@
-
-
-
 .liked-true {
     background-color: red;
     color:  blue;
@@ -12,7 +9,7 @@
 }
 
 .article {
-    margin: 25px 30px; 
+    margin: 25px 30px;
 
 }
 
@@ -31,46 +28,76 @@
 
 
 
+
 .authorBar {
     display: grid;
-    grid-template-columns: 50px 100px;
-    grid-template-rows: 30px 30px;
-    
+    grid-template-columns: 100px min-content auto auto;
+    grid-template-rows: 50px 50px;
     width: auto;
-
+    grid-template-areas:
+    "img name follow"
+    "img date date";
 }
 
 .authorBar__pic {
-    grid-area: 1|1|3|1
+    grid-area: img;
+}
+
+.article__picture{
+    height: auto;
+    width: auto;
 }
 
 .article__author {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    grid-area: 1|2|2|3
+    grid-area: name;
+}
+.article__dateCreated{
+    color: #757575;
+    font-size: 14px;
+}
+
+#storybtns__follow {
+    grid-area: follow;
+    font-size: 13px;
+
+}
+#storybtns__follow:focus {
+    grid-area: follow;
+    outline: 0;
+    font-size: 13px;
+
+}
+
+.article__dateCreated {
+    grid-area: date;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* rgba(117, 117, 117, 1) */
 }
 
 .follow-button__following {
-    margin: .25em .5em;
+    font-size: 13px;
+    margin-left: 5px;
     border-radius: .25rem;
-    padding: .5em;
-    width: 5em;
+    /* padding: .5em; */
+    width: 6em;
     font-size: 1.2em;
-    background-color: #0b7425;
-    color: rgb(209, 213, 218);
-    border: 3px solid rgb(209, 213, 218);
+    background-color: green;
+    color: white;
+    border: 3px solid rgba(26, 137, 23, 1);
+    align-self: center;
+    height: 20px;
 }
 .follow-button__unfollowing {
-    margin: .25em .5em;
+    height: 20px;
+    font-size: 13px;
+    align-self: center;
+    margin-left: 5px;
     border-radius: .25rem;
-    padding: .5em;
-    width: 5em;
+    /* padding: .5em; */
+    width: 6em;
     font-size: 1.2em;
-    background-color: #7c1a01;
-    color: rgb(209, 213, 218);
-    border: 3px solid rgb(209, 213, 218);
+    background-color: white;
+    color: green;
+    border: 3px solid rgba(26, 137, 23, 1);
 }
-
-
-
-
-
