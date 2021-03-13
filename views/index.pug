@@ -53,7 +53,7 @@ block content
               div.story-info
                 span #{months[story.createdAt.getMonth()]} #{story.createdAt.getDate()}
                 span= `${Math.ceil(story.body.split(' ').length/300)} min read`
-                span= story.likingUsers.length
+                span= `${topStory.likingUsers.length} likes`
             div.story-img-div: a(href=`/stories/${story.id}`)
               img(src=story.picture)
 
@@ -73,6 +73,6 @@ block content
             div.story-info
               span #{months[story.createdAt.getMonth()]} #{story.createdAt.getDate()}
               span= `${Math.ceil(story.body.split(' ').length/300)} min read`
-              span= story.likingUsers.length
+              span= `${topStory.likingUsers.length} likes`
           div.story-img-div: a(href=`/stories/${story.id}`)
              img(src=story.picture)
