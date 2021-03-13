@@ -8,7 +8,7 @@ module.exports = {
           userId: 1,
           likeableId: 1,
           likeableType: "story",
-          createAt: new Date(),
+          createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
