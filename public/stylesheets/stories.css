@@ -41,11 +41,11 @@
 
 .authorBar__pic {
     grid-area: img;
+    heigth: 90px;
 }
 
 .article__picture{
-    height: auto;
-    width: auto;
+    height: 10em;
 }
 
 .article__author {
