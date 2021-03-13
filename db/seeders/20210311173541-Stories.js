@@ -1,4 +1,3 @@
-Seed data for stories:
 'use strict';
 
 module.exports = {
