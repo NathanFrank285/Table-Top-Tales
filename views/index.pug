@@ -8,6 +8,18 @@ append head
 
 block content
   //- h1= title
+  if !authenticated
+    div.banner-container
+      div.left-banner
+        div.heading-text
+          h2 Enter a world of stories
+        div.sub-text
+          h4 Welcome to Table Top Tales, a center of creativity and wonder. Read and share stories from independent writers, players, and Game Masters alike. Everyone's welcome.
+        div.start-button
+          a(href= "/users/signup"): button Get started!
+      div.right-banner
+        div.icon-background
+          img.icon(src="/images/darkbluedragonlogo.png")
 
   div.top-stories
 
