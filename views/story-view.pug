@@ -20,7 +20,7 @@ block content
 
     img.article__picture(src=story.picture)
 
-    p= story.body
+    p.article__body= story.body
     #storybtns
       if authenticated
         button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story

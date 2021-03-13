@@ -75,6 +75,11 @@
     /* rgba(117, 117, 117, 1) */
 }
 
+.article__body{
+    font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: 18px;
+}
+
 .follow-button__following {
     font-size: 13px;
     margin-left: 5px;
