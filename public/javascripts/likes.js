@@ -55,7 +55,7 @@ if (answer == "true") {
   //if initially following
   followbtn.classList.remove("follow-button__following");
   followbtn.classList.add("follow-button__unfollowing")
-  followbtn.innerHTML = "Unfollow"
+  followbtn.innerHTML = "Following"
   btnBool = true;
 } else {
   // if not initally following
@@ -95,7 +95,7 @@ followbtn.addEventListener('click', async (e) => {
 
     followbtn.classList.remove("follow-button__following");
     followbtn.classList.add("follow-button__unfollowing")
-    followbtn.innerHTML = "Unfollow"
+    followbtn.innerHTML = "Following"
   }
 
 

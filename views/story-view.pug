@@ -6,44 +6,53 @@ block content
     script(src="/javascripts/likes.js" type="module" defer)
     link(rel="stylesheet" href="/stylesheets/stories.css")
   +validationErrorSummary(errors)
-
-  h1= story.title
-  p= story.author.username
-  p= story.hook
-  p= story.body
-  #storybtns
-    if authenticated
-      button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story
-
-      if (locals.user.id === story.author.id)
-        //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
-        //- #storybtns
-        a(href=`/stories/${story.id}/delete`)
-          button#storybtns__delete delete
-      else
-        //- when a logged in user clicks follow, they will now be following the author the story
-        //- #storybtns
-        button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
-    else
+  article.article
+    h1.article__title= story.title
+    p.article__description= story.hook
+    div.authorBar
+      img.authorBar__pic(src=story.author.avatarUrl)
+      p.article__author= story.author.username
+      //- when a logged in user clicks follow, they will now be following the author the story
       //- #storybtns
-      a(href="../users/login") Login to follow
+      if (locals.user.id !== story.author.id)
+        button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
+        span.article__dateCreated= `${story.createdAt.toLocaleString("en", { month: "short"  })} ${story.createdAt.getDate()} · ${Math.ceil(story.body.split(" ").length/300)} min read`
 
-  h1 Comment section
+    img.article__picture(src=story.picture)
 
-  ul.commentBox
-    each comment in comments
-      div.comment__div(id=`comment-${comment.id}`)
-        li.comment__body= comment.body
-        span.comment__user= comment.User.username
-        br
-        if authenticated && (locals.user.id === comment.userId)
-          button.comment__delete(id=`${comment.id}`) Delete Comment
-        if authenticated && (locals.user.id !== comment.userId)
-          button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`) Like Comment
+    p.article__body= story.body
+    #storybtns
+      if authenticated
+        button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story
 
-  if authenticated
-    div.newComment
-      textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5")
-      button.newComment__submit(type="submit") Submit
-  else
-    a(href="../users/login") Login to join the conversation!
+        if (locals.user.id === story.author.id)
+          //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
+          //- #storybtns
+          a(href=`/stories/${story.id}/delete`)
+            button#storybtns__delete Delete
+
+
+
+      else
+        //- #storybtns
+        a(href="../users/login") Login to follow
+
+    h1 Comment section
+
+    ul.commentBox
+      each comment in comments
+        div.comment__div(id=`comment-${comment.id}`)
+          li.comment__body= comment.body
+          span.comment__user= comment.User.username
+          br
+          if authenticated && (locals.user.id === comment.userId)
+            button.comment__delete(id=`${comment.id}`) Delete Comment
+          if authenticated && (locals.user.id !== comment.userId)
+            button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`) Like Comment
+
+    if authenticated
+      div.newComment
+        textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5")
+        button.newComment__submit(type="submit") Submit
+    else
+      a(href="../users/login") Login to join the conversation!
