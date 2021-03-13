@@ -8,7 +8,7 @@ module.exports = {
           body: "test",
           userId: 1,
           storyId: 1,
-          createAt: new Date(),
+          createdAt: new Date(),
           updatedAt: new Date(),
         },
       ],
