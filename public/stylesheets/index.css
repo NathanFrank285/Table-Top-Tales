@@ -134,3 +134,53 @@ div, img {
     font-size: .85em;
     margin-right: 1em;
 }
+
+.banner-container {
+    display: flex;
+    width: 75%;
+    margin: 0 auto;
+    justify-content: center;
+    align-content: center;
+}
+
+.left-banner {
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    align-content: space-between;
+    /* border: 1px solid black; */
+}
+
+.heading-text h2 {
+    font-size: 3.5em;
+    font-family: 'Cinzel', serif;
+}
+
+.sub-text h4 {
+    font-size: 2em;
+}
+
+.right-banner {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    height: 20em;
+}
+
+.icon-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-button button {
+  margin: 1em 0em;
+  border-radius: .25rem;
+  padding: .5em;
+  font-size: 1.2em;
+  background-color: #639fab;
+  color: rgb(209, 213, 218);
+  border: 3px solid rgb(209, 213, 218);
+}
