@@ -4,7 +4,13 @@ module.exports = {
     return queryInterface.bulkInsert(
       "Comments",
       [
-        { body: 'test', userId: 1, storyId: 1 },
+        {
+          body: "test",
+          userId: 1,
+          storyId: 1,
+          createAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
