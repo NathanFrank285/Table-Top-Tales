@@ -10,8 +10,10 @@ block content
     h1.article__title= story.title
     p.article__description= story.hook
     div.authorBar
+      a.authorBar__pic(href= `/profile/${story.author.id}`)
       img.authorBar__pic(src=story.author.avatarUrl)
-      p.article__author= story.author.username
+      a.authorBar__author(href= `/profile/${story.author.id}`)
+        p.article__author()= story.author.username
       //- when a logged in user clicks follow, they will now be following the author the story
       //- #storybtns
       if authenticated
@@ -25,7 +27,7 @@ block content
     #storybtns
       if authenticated
         button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`)
-          
+
 
         if (locals.user.id === story.author.id)
           //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
@@ -40,7 +42,6 @@ block content
         a(href="../users/login") Login to follow and Clap!
 
     h1 Comment section
-
     ul.commentBox
       each comment in comments
         div.comment__div(id=`comment-${comment.id}`)
@@ -50,11 +51,12 @@ block content
           if authenticated && (locals.user.id === comment.userId)
             button.comment__delete(id=`${comment.id}`) Delete Comment
           if authenticated && (locals.user.id !== comment.userId)
-            button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`) Like Comment
+            button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`)
 
     if authenticated
       div.newComment
         textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5")
+        br
         button.newComment__submit(type="submit") Submit
     else
       a(href="../users/login") Login to join the conversation!
