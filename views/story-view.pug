@@ -1,58 +1,59 @@
 extends layout
 include utils.pug
-block content
-  append head
-    script(src="/javascripts/comments.js" type="module" defer)
-    script(src="/javascripts/likes.js" type="module" defer)
-    link(rel="stylesheet" href="/stylesheets/stories.css")
+append head
+  script(src="/javascripts/comments.js" type="module" defer)
+  script(src="/javascripts/likes.js" type="module" defer)
+  link(rel="stylesheet" href="/stylesheets/stories.css")
+
+block content    
   +validationErrorSummary(errors)
-  article.article
+  div.article-header
     h1.article__title= story.title
     p.article__description= story.hook
-    div.authorBar
+  div.authorBar
+    a(href= `/profile/${story.author.id}`): div.avatar
       img.authorBar__pic(src=story.author.avatarUrl)
       p.article__author= story.author.username
-      //- when a logged in user clicks follow, they will now be following the author the story
-      //- #storybtns
-      if (locals.user.id !== story.author.id)
-        button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
-        span.article__dateCreated= `${story.createdAt.toLocaleString("en", { month: "short"  })} ${story.createdAt.getDate()} · ${Math.ceil(story.body.split(" ").length/300)} min read`
+    
+    if !authenticated
 
+    else if (locals.user.id !== story.author.id)
+      button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
+      span.article__dateCreated= `${story.createdAt.toLocaleString("en", { month: "short"  })} ${story.createdAt.getDate()} · ${Math.ceil(story.body.split(" ").length/300)} min read`
+  div.story-body
     img.article__picture(src=story.picture)
 
     p.article__body= story.body
-    #storybtns
-      if authenticated
-        button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story
+      #storybtns
+    if authenticated
+      button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story
 
-        if (locals.user.id === story.author.id)
-          //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
-          //- #storybtns
-          a(href=`/stories/${story.id}/delete`)
-            button#storybtns__delete Delete
+    if !authenticated
+      
+    else if (locals.user.id === story.author.id)
+      a(href=`/stories/${story.id}/delete`)
+        button#storybtns__delete Delete
+    
 
+  div.comment-section
+    h1 Comment Section
 
-
-      else
-        //- #storybtns
-        a(href="../users/login") Login to follow
-
-    h1 Comment section
-
-    ul.commentBox
-      each comment in comments
-        div.comment__div(id=`comment-${comment.id}`)
-          li.comment__body= comment.body
-          span.comment__user= comment.User.username
-          br
-          if authenticated && (locals.user.id === comment.userId)
-            button.comment__delete(id=`${comment.id}`) Delete Comment
-          if authenticated && (locals.user.id !== comment.userId)
-            button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`) Like Comment
+  
+    each comment in comments
+      div.comment__div(id=`comment-${comment.id}`)
+        p.comment__body= comment.body
+        a(href= `/profile/${story.author.id}`): img(src=story.author.avatarUrl)
+        a(href= `/profile/${story.author.id}`): span.comment__user= comment.User.username
+        br
+        if authenticated && (locals.user.id === comment.userId)
+          button.comment__delete(id=`${comment.id}`) Delete Comment
+        if authenticated && (locals.user.id !== comment.userId)
+          button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`) Like Comment
 
     if authenticated
       div.newComment
         textarea.newComment__text(name="body", storyId=story.id, cols="30", rows="5")
+        br
         button.newComment__submit(type="submit") Submit
     else
       a(href="../users/login") Login to join the conversation!

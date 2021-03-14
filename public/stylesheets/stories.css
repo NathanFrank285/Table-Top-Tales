@@ -1,108 +1,122 @@
 .liked-true {
-    background-color: red;
-    color:  blue;
-}
-
-.liked-false {
-    background-color: orange;
-    color: black;
-}
-
-.article {
-    margin: 25px 30px;
-
-}
-
-.article__title {
-    font-family: fell, Georgia, Cambria, “Times New Roman”, Times, serif;
-    font-size: 48px;
-    color: #292929;
-
-}
-
-.article__description {
-    font-size: 20px;
-    color: #757575;
-    font-family: sohne, “Helvetica Neue”, Helvetica, Arial, sans-serif;
-}
-
-
-
-
-.authorBar {
-    display: grid;
-    grid-template-columns: 100px min-content auto auto;
-    grid-template-rows: 50px 50px;
-    width: auto;
-    grid-template-areas:
-    "img name follow"
-    "img date date";
-}
-
-.authorBar__pic {
-    grid-area: img;
-}
-
-.article__picture{
-    height: auto;
-    width: auto;
-}
-
-.article__author {
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    grid-area: name;
-}
-.article__dateCreated{
-    color: #757575;
-    font-size: 14px;
-}
-
-#storybtns__follow {
-    grid-area: follow;
-    font-size: 13px;
-
-}
-#storybtns__follow:focus {
-    grid-area: follow;
-    outline: 0;
-    font-size: 13px;
-
-}
-
-.article__dateCreated {
-    grid-area: date;
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    /* rgba(117, 117, 117, 1) */
-}
-
-.article__body{
-    font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
-    font-size: 18px;
-}
-
-.follow-button__following {
-    font-size: 13px;
-    margin-left: 5px;
     border-radius: .25rem;
-    /* padding: .5em; */
-    width: 6em;
     font-size: 1.2em;
     background-color: green;
     color: white;
     border: 3px solid rgba(26, 137, 23, 1);
     align-self: center;
-    height: 20px;
 }
-.follow-button__unfollowing {
-    height: 20px;
-    font-size: 13px;
+
+.liked-false {
     align-self: center;
-    margin-left: 5px;
     border-radius: .25rem;
-    /* padding: .5em; */
-    width: 6em;
     font-size: 1.2em;
     background-color: white;
     color: green;
     border: 3px solid rgba(26, 137, 23, 1);
+}
+
+.follow-button__following {
+    border-radius: .25rem;
+    font-size: 1.2em;
+    background-color: green;
+    color: white;
+    border: 3px solid rgba(26, 137, 23, 1);
+    align-self: center;
+    
+}
+.follow-button__unfollowing {
+    align-self: center;
+    font-size: 1.2em;
+    background-color: white;
+    color: green;
+    border: 3px solid rgba(26, 137, 23, 1);
+}
+
+.article-header {
+    width: 40%;
+    margin: 1em auto;
+}
+
+.authorBar {
+    display: flex;
+    width: 40%;
+    margin: 1em auto;
+    align-items: center;
+}
+
+.avatar img {
+    max-height: 2em;
+    margin: 0em .5em;
+    border-radius: 10px;
+}
+
+.avatar p {
+    margin: 0em .5em;
+}
+
+.authorBar button{
+    margin: 0em .25em;
+}
+
+.authorBar span {
+    margin: 0 .5em;
+}
+
+.story-body {
+    max-width: 75%;
+    margin: 1em auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.story-body img {
+    max-width: 90%;
+    margin: 1em auto;
+    border-radius: 12px;
+}
+
+.login{
+    margin: .25em .5em;
+    border-radius: .25rem;
+    padding: .5em;
+    font-size: .8em;
+    background-color: #639fab;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
+}
+
+.comment-section {
+    width: 65%;
+    margin: 1em auto;
+}
+
+.comment-section h1 {
+    margin: 1.5em 0em;
+}
+
+.comment__div button{
+    margin: .4em 0em;
+    border-radius: .25rem;
+    padding: .5em;
+    font-size: .8em;
+    background-color: #639fab;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
+}
+
+.newComment button {
+    margin: .4em 0em;
+    border-radius: .25rem;
+    padding: .5em;
+    font-size: .8em;
+    background-color: #30575f;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
+}
+
+.comment-section img {
+    max-height: 2em;
+    margin: 0em .5em;
+    border-radius: 10px;
 }
