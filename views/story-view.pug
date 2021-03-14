@@ -14,16 +14,18 @@ block content
       p.article__author= story.author.username
       //- when a logged in user clicks follow, they will now be following the author the story
       //- #storybtns
-      if (locals.user.id !== story.author.id)
-        button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
-        span.article__dateCreated= `${story.createdAt.toLocaleString("en", { month: "short"  })} ${story.createdAt.getDate()} · ${Math.ceil(story.body.split(" ").length/300)} min read`
+      if authenticated
+        if (locals.user.id !== story.author.id)
+          button#storybtns__follow(class= "follow-button__following" data-profileuser= profileUser.id data-answer= answer)= followData
+      span.article__dateCreated= `${story.createdAt.toLocaleString("en", { month: "short"  })} ${story.createdAt.getDate()} · ${Math.ceil(story.body.split(" ").length/300)} min read`
 
     img.article__picture(src=story.picture)
 
     p.article__body= story.body
     #storybtns
       if authenticated
-        button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`) Like Story
+        button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`)
+          
 
         if (locals.user.id === story.author.id)
           //- when the loggedin creator of the story clicks the delete button, redirects to a delete confirm page
@@ -35,7 +37,7 @@ block content
 
       else
         //- #storybtns
-        a(href="../users/login") Login to follow
+        a(href="../users/login") Login to follow and Clap!
 
     h1 Comment section
 
