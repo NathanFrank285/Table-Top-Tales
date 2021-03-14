@@ -3,7 +3,7 @@
      background-image: url(../images/thumbs-up.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-
+    background-color: #FAFAFA;
   height: 20px;
   width: 80px;
   border: none;
@@ -24,6 +24,7 @@
   height: 20px;
   width: 80px;
   border: none;
+  background-color: #FAFAFA;
 }
 
 .article {
@@ -45,6 +46,8 @@
     color: #757575;
     font-family: sohne, “Helvetica Neue”, Helvetica, Arial, sans-serif;
 }
+
+
 
 .authorBar {
     display: grid;
@@ -122,4 +125,46 @@
     background-color: white;
     color: green;
     border: 3px solid rgba(26, 137, 23, 1);
+}
+
+.comment__body{
+    list-style-type: none;
+}
+
+.newComment__text {
+    height: 8em;
+    width: 20em;
+    border-radius: .5em;
+    overflow-y: auto;
+    border: 1px solid #222222;
+    resize: none;
+    margin-top: 1em;
+}
+
+.newComment__submit{
+    margin: .4em 0em;
+    border-radius: .25rem;
+    padding: .5em;
+    font-size: .8em;
+    background-color: #30575f;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
+}
+.comment__delete {
+    margin: .4em 0em;
+    border-radius: .25rem;
+    padding: .5em;
+    font-size: .8em;
+    background-color: #30575f;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
+    margin-left: 0.5em;
+    border-radius: 10px;
+}
+
+.comment__div img{
+    max-height: 2em;
+    border-radius: 10px;
+    margin: 0em 0.5em
+
 }

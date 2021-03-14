@@ -54,6 +54,7 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
       });
       const newComment = await commentJson.json();
       const { comment, user } = newComment;
+      console.log(user);
       const commentUl = document.querySelector(".commentBox");
       const commentDiv = document.createElement("div");
       commentDiv.classList.add("comment__div");
