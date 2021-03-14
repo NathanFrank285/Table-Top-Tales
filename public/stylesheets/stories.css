@@ -1,15 +1,35 @@
+
 .liked-true {
-    background-color: red;
-    color:  blue;
+     background-image: url(../images/thumbs-up.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  height: 20px;
+  width: 80px;
+  border: none;
+}
+.liked-true:focus,
+#storybtns__like:focus,
+.liked-false:focus {
+    outline: 0;
+    /* border: none; */
 }
 
 .liked-false {
-    background-color: orange;
-    color: black;
+
+    background-image: url(../images/thumbs-up-outline.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  /* background-color: white; */
+  height: 20px;
+  width: 80px;
+  border: none;
 }
 
 .article {
     margin: 25px 30px;
+    padding-left: 10%;
+    padding-right: 10%;
 
 }
 
@@ -26,14 +46,10 @@
     font-family: sohne, “Helvetica Neue”, Helvetica, Arial, sans-serif;
 }
 
-
-
-
 .authorBar {
     display: grid;
-    grid-template-columns: 100px min-content auto auto;
+    grid-template-columns: min-content 100px max-content auto auto;
     grid-template-rows: 50px 50px;
-    width: auto;
     grid-template-areas:
     "img name follow"
     "img date date";
@@ -41,11 +57,12 @@
 
 .authorBar__pic {
     grid-area: img;
+    height: 75px;
+    margin-right: 15px;
 }
 
 .article__picture{
-    height: auto;
-    width: auto;
+    width: 90%;
 }
 
 .article__author {
