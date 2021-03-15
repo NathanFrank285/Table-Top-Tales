@@ -161,6 +161,9 @@
     margin-left: 0.5em;
     border-radius: 10px;
 }
+p.article__body{
+    white-space: pre-wrap;
+}
 
 .comment__div img{
     max-height: 2em;
