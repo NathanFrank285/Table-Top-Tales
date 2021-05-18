@@ -26,7 +26,7 @@ block content
     p.article__body= story.body
     #storybtns
       if authenticated
-        button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`)
+        button#storybtns__like(class=`liked-${storyBool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`story`)
 
 
         if (locals.user.id === story.author.id)
@@ -51,7 +51,7 @@ block content
           if authenticated && (locals.user.id === comment.userId)
             button.comment__delete(id=`${comment.id}`) Delete Comment
           if authenticated && (locals.user.id !== comment.userId)
-            button#storybtns__like(class=`liked-${bool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`)
+            button#storybtns__like(class=`liked-${commentBool}` data-userId=`${locals.user.id}` data-likeableId=`${story.id}` data-likeableType=`comment`)
 
     if authenticated
       div.newComment

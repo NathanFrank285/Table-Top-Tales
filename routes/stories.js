@@ -62,12 +62,14 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next) => {
     include: { model: User },
     order: [["id", "ASC"]]
   });
-  let bool = false;
+  let storyBool = false;
   if (req.session.auth) {
-    bool = await Like.findOne({ where: { userId: req.session.auth.userId, likeableId: storyId, likeableType: "story" } })
+    storyBool = await Like.findOne({ where: { userId: req.session.auth.userId, likeableId: storyId, likeableType: "story" } })
   }
-  bool ? bool = true : bool = false
+  storyBool ? storyBool = true : storyBool = false
 
+  //todo figure out how to see what comments the user has likes or not
+  let commentBool = false;
   //follow button implementation
   const profileUser = await User.findByPk(story.author.id, {
     include: [
@@ -102,7 +104,7 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next) => {
     }
   }
 
-  res.render("story-view", { story, comments, bool, answer, followData, profileUser });
+  res.render("story-view", { story, comments, storyBool, commentBool, answer, followData, profileUser });
   // res.json(res.locals)
 }))
 
