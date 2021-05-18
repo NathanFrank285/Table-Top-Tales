@@ -34,7 +34,7 @@ router.get('/', asyncHandler(async (req, res) => {
         }
       }
 
-    ]
+    ], order: [["createdAt", 'DESC']], limit: 20
   });
 
   const topStory = stories[0]

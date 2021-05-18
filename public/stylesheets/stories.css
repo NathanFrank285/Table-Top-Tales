@@ -1,15 +1,36 @@
+
 .liked-true {
-    background-color: red;
-    color:  blue;
+     background-image: url(../images/thumbs-up.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+    background-color: #FAFAFA;
+  height: 20px;
+  width: 80px;
+  border: none;
+}
+.liked-true:focus,
+#storybtns__like:focus,
+.liked-false:focus {
+    outline: 0;
+    /* border: none; */
 }
 
 .liked-false {
-    background-color: orange;
-    color: black;
+
+    background-image: url(../images/thumbs-up-outline.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  /* background-color: white; */
+  height: 20px;
+  width: 80px;
+  border: none;
+  background-color: #FAFAFA;
 }
 
 .article {
     margin: 25px 30px;
+    padding-left: 10%;
+    padding-right: 10%;
 
 }
 
@@ -28,12 +49,10 @@
 
 
 
-
 .authorBar {
     display: grid;
-    grid-template-columns: 100px min-content auto auto;
+    grid-template-columns: min-content 100px max-content auto auto;
     grid-template-rows: 50px 50px;
-    width: auto;
     grid-template-areas:
     "img name follow"
     "img date date";
@@ -41,11 +60,12 @@
 
 .authorBar__pic {
     grid-area: img;
-    heigth: 90px;
+    height: 75px;
+    margin-right: 15px;
 }
 
 .article__picture{
-    height: 10em;
+    width: 90%;
 }
 
 .article__author {
@@ -105,4 +125,49 @@
     background-color: white;
     color: green;
     border: 3px solid rgba(26, 137, 23, 1);
+}
+
+.comment__body{
+    list-style-type: none;
+}
+
+.newComment__text {
+    height: 8em;
+    width: 20em;
+    border-radius: .5em;
+    overflow-y: auto;
+    border: 1px solid #222222;
+    resize: none;
+    margin-top: 1em;
+}
+
+.newComment__submit{
+    margin: .4em 0em;
+    border-radius: .25rem;
+    padding: .5em;
+    font-size: .8em;
+    background-color: #30575f;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
+}
+.comment__delete {
+    margin: .4em 0em;
+    border-radius: .25rem;
+    padding: .5em;
+    font-size: .8em;
+    background-color: #30575f;
+    color: rgb(209, 213, 218);
+    border: 3px solid rgb(209, 213, 218);
+    margin-left: 0.5em;
+    border-radius: 10px;
+}
+p.article__body{
+    white-space: pre-wrap;
+}
+
+.comment__div img{
+    max-height: 2em;
+    border-radius: 10px;
+    margin: 0em 0.5em
+
 }
