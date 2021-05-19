@@ -51,7 +51,8 @@ block content
           if authenticated && (locals.user.id === comment.userId)
             button.comment__delete(id=`${comment.id}`) Delete Comment
           if authenticated && (locals.user.id !== comment.userId)
-            button#storybtns__like(class=`liked-${commentBool}` data-userId=`${locals.user.id}` data-likeableId=`${comment.id}` data-likeableType=`comment`)
+            button#storybtns__like(class=`${comment.commentBool}` data-userId=`${locals.user.id}` data-likeableId=`${comment.id}` data-likeableType=`comment`)
+          //- else if authenticated && (locals.user.id !== comment.userId)
 
     if authenticated
       div.newComment

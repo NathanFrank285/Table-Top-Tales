@@ -59,17 +59,47 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next) => {
   const story = await Story.findOne({ where: { id: storyId }, include: { model: User, as: "author" } });
   const comments = await Comment.findAll({
     where: { storyId },
-    include: { model: User },
-    order: [["id", "ASC"]]
-  });
+    include: [User], // , Like // Include all likes associated with this?
+    order: [["id", "ASC"]] // Or maybe take each comment, find by pk,
+  });               // then find all likes associated with said comment
   let storyBool = false;
   if (req.session.auth) {
-    storyBool = await Like.findOne({ where: { userId: req.session.auth.userId, likeableId: storyId, likeableType: "story" } })
+    storyBool = await Like.findOne({
+      where: {
+        userId: req.session.auth.userId,
+        likeableId: storyId,
+        likeableType: "story"
+      }
+    })
   }
   storyBool ? storyBool = true : storyBool = false
 
   //todo figure out how to see what comments the user has likes or not
-  let commentBool = false;
+  const likedCommentsIds = []; // Will be filled with all the comments' likeable IDs
+  for (let i = 0; i < comments.length; i++) {
+    const comment = comments[i];
+    const likedComment = await Like.findOne({
+      where: {
+        likeableType: 'comment',
+        likeableId: comment.id,
+        userId: req.session.auth.userId,
+      }
+    })
+    console.log('WHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', likedComment)
+    if (likedComment) {
+      likedCommentsIds.push(likedComment.likeableId)
+    }
+  }
+
+  comments.forEach(comment => {
+    if (likedCommentsIds.includes(comment.id)) {
+      comment['commentBool'] = 'liked-true'
+    }
+    else {
+      comment['commentBool'] = 'liked-false'
+    }
+  })
+
   //follow button implementation
   const profileUser = await User.findByPk(story.author.id, {
     include: [
@@ -104,7 +134,7 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next) => {
     }
   }
 
-  res.render("story-view", { story, comments, storyBool, commentBool, answer, followData, profileUser });
+  res.render("story-view", { story, comments, storyBool, likedCommentsIds, answer, followData, profileUser });
   // res.json(res.locals)
 }))
 
