@@ -156,7 +156,7 @@ a {
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
-    z-index: -3;
+    /* z-index: -3; */
 }
 .name {
     font-size: 24px;
