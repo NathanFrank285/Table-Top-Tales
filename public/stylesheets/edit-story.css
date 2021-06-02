@@ -1,0 +1,68 @@
+.border {
+  width: 35%;
+  margin: 3em auto;
+  background-color: #1c5d99;
+  border-radius: 10px;
+  padding: 1.7rem;
+}
+
+.container {
+  width: 85%;
+  height: 85%;
+  margin: 1.2em auto;
+  background-color: #BBCDE5;
+  border-radius: 10px;
+  padding-top: 1em;
+}
+
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* margin-top: 1.5rem; */
+}
+
+input, textarea {
+  margin: .25rem 7.5% ;
+  height: 2rem;
+  border-radius: 10px;
+  width: 85%;
+  padding: 0.7rem;
+  font-size: 1.2rem;
+  border: 2px solid #222222;
+}
+
+textarea {
+  height: 7rem;
+}
+
+.regbtn-container{
+  display: flex;
+  justify-content: center;
+  flex-direction:row;
+}
+.regbtn {
+    color: rgb(209, 213, 218);
+    background-color: #639fab;
+    border: none;
+    height: 1.7rem;
+    width: 6rem;
+    border-radius: 10px;
+    font-size: large;
+    /* margin: 1em auto; */
+    border: 3px solid rgb(209, 213, 218);
+}
+.editForm-textarea{
+  height: 75px;
+  width: 185px;
+}
+.outer {
+  display: flex;
+  justify-content: center;
+}
+
+.errors {
+  text-align: center;
+  color: red;
+}

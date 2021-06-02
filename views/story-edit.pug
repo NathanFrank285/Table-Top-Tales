@@ -1,0 +1,32 @@
+extends layout.pug
+append head
+  //- script(src="/javascripts/stories.js" type="module" defer)
+  link(rel="stylesheet", href="/stylesheets/edit-story.css")
+
+
+include utils.pug
+  //- pass the story id to this page, if you click cancel will redirect to the story that you came from
+  block content
+    if authenticated
+      if (locals.user.id === story.userId)
+        h1 Please edit #{story.title}
+          +field("Title", "title", story.title, true)
+          +validationErrorSummary(errors)
+          div.border
+            div.container
+              form(action=`/stories/${story.id}` method="PATCH")
+                input(type="hidden", name="_csrf" value=csrfToken)
+                input.form-control(placeholder='title' type='text' value=story.title place)
+                input.form-control(placeholder='hook' type='text' value=story.hook)
+                textarea.form-control.editForm-textarea() #{story.body}
+                input.form-control(placeholder='picture url' type='text' value=story.picture)
+                .regbtn-container
+                  button.regbtn(type="submit") Edit
+                  a(href=`/story/${story.id}`)
+                    button.regbtn Cancel
+
+
+          //- Add the titel, subheader, and body edit fields
+          //- .confirmEdit
+          //-   a(href=`/profile/${story.id}`)
+          //-     button.confirmEdit__edit(id=`${story.id}`) Confirm Edit

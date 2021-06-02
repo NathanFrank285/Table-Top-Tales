@@ -92,6 +92,10 @@
 
 }
 
+#storybtns__edit{
+    margin-left: 5px;
+}
+
 .article__dateCreated {
     grid-area: date;
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -9,7 +9,7 @@ storiesApiRouter.delete(
   "/:id",
   asyncHandler(async (req, res, next) => {
     const storyId = req.params.id;
-    
+
     const story = await Story.findByPk(storyId);
     const userId = story.userId;
     await Like.destroy({where:{likeableId: story.id, likeableType: 'story'}})
@@ -18,6 +18,22 @@ storiesApiRouter.delete(
     res.json({ userId });
   })
 );
+
+storiesApiRouter.patch(
+  "/:id",
+  asyncHandler(async (req, res, next) => {
+    const storyId = req.params.id;
+    console.log(storyId, "--------------------------------");
+
+    const story = await Story.findByPk(storyId);
+    const userId = story.userId;
+    await Like.destroy({where:{likeableId: story.id, likeableType: 'story'}})
+    await story.destroy();
+
+    res.json({ userId });
+  })
+);
+
 
 
 module.exports = storiesApiRouter;

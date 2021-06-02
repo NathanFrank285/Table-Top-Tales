@@ -18,9 +18,23 @@ window.addEventListener('DOMContentLoaded', async(event)=>{
 
     })
 
-  
+  const editButton = document.querySelector(".confirmEdit__edit");
+  const newBody = document.querySelector('')
+    editButton.addEventListener('click', async (event)=>{
+      let storyId = event.target.id
+      try {const res = await fetch(`/stories/api/${storyId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (res.ok) {
+        const {userId} = await res.json()
+        window.location.href = `/profile/${{userId}}`;
+      }
+    } catch (error) {
+        console.log(error);
+      }
 
-
+    })
 
 
 })
