@@ -9,58 +9,62 @@ html
         link(href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet")
         link(href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet")
   body
+    .app-container
+      if locals.authenticated
+        div.nav-outer-div
+          div.left
+            div.logo
+              a(href="/")
+                div.logo-background
+                  img(src='/images/darkbluedragonlogo.png').website-logo
+                  p.website-logo-text Table Top Tales
+            div.title-div
+              h1.title-text= title
+          div.right
+            a(href= `/stories/new`): button Create a story
+            a(href= `/profile/${user.id}`): img(src= locals.user.avatarUrl)
+            div.form
+              form(action='/users/logout' method="POST")
+                button(type="submit") Logout
+      else
+        div.nav-outer-div
+          div.left
+            div.logo
+              a(href="/")
+                div.logo-background
+                  img(src='/images/darkbluedragonlogo.png').website-logo
+                  p.website-logo-text Table Top Tales
+            div.title-div
+              h1.title-text= title
+          div.right
+            div.auth-btns
+              a(href="/users/login"): button.button(type="button" ) Login
+              a(href="/users/signup"): button.button(type="button" ) Signup
 
-    if locals.authenticated
-      div.nav-outer-div
-        div.left
-          div.logo
-            a(href="/")
-              div.logo-background
-                img(src='/images/darkbluedragonlogo.png').website-logo
-                p.website-logo-text Table Top Tales
-          div.title-div
-            h1.title-text= title
-        div.right
-          a(href= `/stories/new`): button Create a story
-          a(href= `/profile/${user.id}`): img(src= locals.user.avatarUrl)
-          div.form
-            form(action='/users/logout' method="POST")
-              button(type="submit") Logout
-    else
-      div.nav-outer-div
-        div.left
-          div.logo
-            a(href="/")
-              div.logo-background
-                img(src='/images/darkbluedragonlogo.png').website-logo
-                p.website-logo-text Table Top Tales
-          div.title-div
-            h1.title-text= title
-        div.right
-          div.auth-btns
-            a(href="/users/login"): button.button(type="button" ) Login
-            a(href="/users/signup"): button.button(type="button" ) Signup
+      block content
 
-    block content
-    block foot
-      .footer
-        div(class="personal-info-container")
-          div(class="name") Kevin Karas
-          div(class="email") kevinkaras2@gmail.com
-          div(class="linkedIn"): a(href="https://www.linkedin.com/in/kevin-karas-34920a20b/") Kevin's LinkedIn
-          div(class="github"): a(href="https://github.com/KevinKaras") Kevin's GitHub
-        div(class="personal-info-container")
-          div(class="name") Nathan Frank
-          div(class="email") nathansfrank@yahoo.com
-          div(class="linkedIn"): a(href="https://www.linkedin.com/in/nathan-frank-8a743568/") Nathan's LinkedIn
-          div(class="github"): a(href="https://github.com/NathanFrank285") Nathan's GitHub
-        div(class="personal-info-container")
-          div(class="name") Bryan Thomas
-          div(class="email") joemanf0@gmail.com
-          div(class="linkedIn"): a(href="https://www.linkedin.com/in/bryan-thomas-108b891b5/") Bryan's LinkedIn
-          div(class="github"): a(href="https://github.com/Joemanf") Bryan's GitHub
-        div(class="personal-info-container")
-            div(class="name") Christopher Kyle
-            div(class="email") ckyle6300@outlook.com
-            div(class="linkedIn"): a(href="https://www.linkedin.com/in/christopher-kyle-1831bb212/") Chris's LinkedIn
-            div(class="github"): a(href="https://github.com/ckyle6300") Chris's GitHub
+      block foot
+        .footer-container
+          .developers Meet the developers:
+
+          .footer
+            div(class="personal-info-container")
+              div(class="name") Kevin Karas
+              div(class="email") kevinkaras2@gmail.com
+              div(class="linkedIn"): a(target='_blank' href="https://www.linkedin.com/in/kevin-karas-34920a20b/") LinkedIn
+              div(class="github"): a(target='_blank' href="https://github.com/KevinKaras") GitHub
+            div(class="personal-info-container")
+              div(class="name") Nathan Frank
+              div(class="email") nathansfrank@yahoo.com
+              div(class="linkedIn"): a(target='_blank' href="https://www.linkedin.com/in/nathan-frank-8a743568/") LinkedIn
+              div(class="github"): a(target='_blank' href="https://github.com/NathanFrank285") GitHub
+            div(class="personal-info-container")
+              div(class="name") Bryan Thomas
+              div(class="email") joemanf0@gmail.com
+              div(class="linkedIn"): a(target='_blank' href="https://www.linkedin.com/in/bryan-thomas-108b891b5/") LinkedIn
+              div(class="github"): a(target='_blank' href="https://github.com/Joemanf") GitHub
+            div(class="personal-info-container")
+                div(class="name") Christopher Kyle
+                div(class="email") ckyle6300@outlook.com
+                div(class="linkedIn"): a(target='_blank' href="https://www.linkedin.com/in/christopher-kyle-1831bb212/") LinkedIn
+                div(class="github"): a(target='_blank' href="https://github.com/ckyle6300") GitHub
