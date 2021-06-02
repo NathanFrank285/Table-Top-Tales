@@ -129,6 +129,7 @@
 
 .comment__body{
     list-style-type: none;
+    overflow: auto;
 }
 
 .newComment__text {
@@ -168,6 +169,6 @@ p.article__body{
 .comment__div img{
     max-height: 2em;
     border-radius: 10px;
-    margin: 0em 0.5em
-
+    margin: 0em 0.5em;
+    
 }
