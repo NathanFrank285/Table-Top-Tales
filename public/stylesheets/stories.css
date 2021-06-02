@@ -130,9 +130,18 @@
     border: 3px solid rgba(26, 137, 23, 1);
 }
 
+.comment__div img{
+    max-height: 2em;
+    border-radius: 10px;
+    margin: 0em 0.5em;
+
+}
+
 .comment__body{
+    max-width: 50vw;
     list-style-type: none;
-    overflow: auto;
+    /* overflow: auto; */
+    word-wrap:break-word;
 }
 
 .newComment__text {
@@ -167,11 +176,4 @@
 }
 p.article__body{
     white-space: pre-wrap;
-}
-
-.comment__div img{
-    max-height: 2em;
-    border-radius: 10px;
-    margin: 0em 0.5em;
-    
 }
