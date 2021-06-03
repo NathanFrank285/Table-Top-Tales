@@ -23,7 +23,6 @@ followRouter.post(`/new-follow`, asyncHandler(async (req, res) => {
 followRouter.delete(`/delete-follow`, asyncHandler(async (req, res) => {
     const { followerId } = req.body;
     const userId = req.session.auth.userId
-    console.log('--------------------------------------------------------------------', followerId, userId)
     const deleteFollower = await Follow.findOne({
         where: { userId, followerId }
     });

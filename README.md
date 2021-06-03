@@ -28,3 +28,7 @@ When a user clicks on another user's profile, that user is taken to the profile 
 
 ## Likes (MVP #4)
 When a user clicks on a story, they are presented at the end of the story with a like button. The user can click on that like button to "like" the story, , which will display on the splash page underneath the stories display. Users can also like individual comments that are posted to stories.
+
+
+## Technical Implementation
+How we implemented the liking feature and to difference between comment likes and story likes on the same story

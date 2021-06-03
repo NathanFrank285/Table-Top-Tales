@@ -149,4 +149,17 @@ storiesRouter.get('/:id/delete', asyncHandler(async (req, res) => {
 
 }))
 
+storiesRouter.get('/:id/edit', asyncHandler(async (req, res) => {
+  const storyId = req.params.id;
+  const story = await Story.findByPk(storyId)
+  if (!res.locals.authenticated || res.locals.user.id !== story.userId) {
+    res.redirect('/')
+  } else {
+    res.render('story-edit', { story })
+  }
+
+}))
+
+
+
 module.exports = storiesRouter
