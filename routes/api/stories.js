@@ -19,18 +19,23 @@ storiesApiRouter.delete(
   })
 );
 
-storiesApiRouter.patch(
+storiesApiRouter.put(
   "/:id",
   asyncHandler(async (req, res, next) => {
     const storyId = req.params.id;
-    console.log(storyId, "--------------------------------");
-
+    const { title, hook, body, picture } = req.body;
     const story = await Story.findByPk(storyId);
-    const userId = story.userId;
-    await Like.destroy({where:{likeableId: story.id, likeableType: 'story'}})
-    await story.destroy();
+    console.log(story, "--------------------")
+    await story.update({title, hook, body,  picture});
 
-    res.json({ userId });
+    // story.title = title
+    // story.hook = hook
+    // story.body = body
+    // story.picture = picture
+    // await story.save();
+    // await story.destroy();
+
+    res.json({storyId});
   })
 );
 

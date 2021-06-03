@@ -15,6 +15,9 @@
   padding-top: 1em;
 }
 
+.form-control{
+  width: 100%;
+}
 
 form {
   display: flex;
@@ -36,7 +39,9 @@ input, textarea {
 textarea {
   height: 7rem;
 }
-
+.header{
+  text-align: center;
+}
 .regbtn-container{
   display: flex;
   justify-content: center;

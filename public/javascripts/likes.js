@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
 const followbtn = document.getElementById('storybtns__follow');
 
-const followerId = followbtn.dataset.profileuser
+// const followerId = followbtn.dataset.profileuser
 const answer = followbtn.dataset.answer
 let btnBool;
 
@@ -102,4 +102,3 @@ followbtn.addEventListener('click', async (e) => {
 
   btnBool = !btnBool;
 })
-

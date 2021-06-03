@@ -1,6 +1,6 @@
 extends layout.pug
 append head
-  //- script(src="/javascripts/stories.js" type="module" defer)
+  script(src="/javascripts/stories.js" type="module" defer)
   link(rel="stylesheet", href="/stylesheets/edit-story.css")
 
 
@@ -9,21 +9,17 @@ include utils.pug
   block content
     if authenticated
       if (locals.user.id === story.userId)
-        h1 Please edit #{story.title}
-          +field("Title", "title", story.title, true)
+        h1.header What do you want to change about, #{story.title}?
           +validationErrorSummary(errors)
           div.border
             div.container
-              form(action=`/stories/${story.id}` method="PATCH")
-                input(type="hidden", name="_csrf" value=csrfToken)
-                input.form-control(placeholder='title' type='text' value=story.title place)
-                input.form-control(placeholder='hook' type='text' value=story.hook)
-                textarea.form-control.editForm-textarea() #{story.body}
-                input.form-control(placeholder='picture url' type='text' value=story.picture)
-                .regbtn-container
-                  button.regbtn(type="submit") Edit
-                  a(href=`/story/${story.id}`)
-                    button.regbtn Cancel
+              input.form-control#title(placeholder='title' type='text' value=story.title)
+              input.form-control.hook(placeholder='hook' type='text' value=story.hook)
+              textarea.form-control.editForm-textarea.body #{story.body}
+              input.form-control.picture(placeholder='picture url' type='text' value=story.picture)
+              button.regbtn.confirmEdit__edit(id=`${story.id}`) Edit
+              a(href=`/stories/${story.id}`)
+                button.regbtn Cancel
 
 
           //- Add the titel, subheader, and body edit fields
