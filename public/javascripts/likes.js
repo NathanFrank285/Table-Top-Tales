@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
 const followbtn = document.getElementById('storybtns__follow');
 
-// const followerId = followbtn.dataset.profileuser
+const followerId = followbtn.dataset.profileuser
 const answer = followbtn.dataset.answer
 let btnBool;
 
@@ -68,6 +68,7 @@ if (answer == "true") {
 
 followbtn.addEventListener('click', async (e) => {
   e.preventDefault();
+  console.log('I was clicked');
   if (btnBool) {
     //true then deleting from database
 
