@@ -115,18 +115,20 @@ a {
 .app-container{
   position: relative;
   min-height: 100vh;
+  margin: 0;
+  padding-bottom: 142px;
 }
 .footer-container{
 display: flex;
 flex-direction: column;
+position: absolute;
 /* align-items: center; */
 background-color: #1c5d99;
 border-radius: 0px;
-position: absolute;
 bottom: 0;
 left: 0;
 right: 0;
-height: 10vh;
+height: fit-content;
 
 
 }
@@ -160,7 +162,7 @@ height: 10vh;
     bottom:0;
     left:0;
     right:0;
-    height:15vh;
+    height:fit-content;
 
 
     /* border: 1px solid; */
