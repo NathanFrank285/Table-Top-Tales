@@ -76,29 +76,31 @@ storiesRouter.get('/:id', asyncHandler(async (req, res, next) => {
 
   //todo figure out how to see what comments the user has likes or not
   const likedCommentsIds = []; // Will be filled with all the comments' likeable IDs
-  for (let i = 0; i < comments.length; i++) {
-    const comment = comments[i];
-    const likedComment = await Like.findOne({
-      where: {
-        likeableType: 'comment',
-        likeableId: comment.id,
-        userId: req.session.auth.userId,
+  if (req.session.auth){
+    for (let i = 0; i < comments.length; i++) {
+      const comment = comments[i];
+      const likedComment = await Like.findOne({
+        where: {
+          likeableType: 'comment',
+          likeableId: comment.id,
+          userId: req.session.auth.userId,
+        }
+      })
+      if (likedComment) {
+        likedCommentsIds.push(likedComment.likeableId)
+      }
+    }
+
+    comments.forEach(comment => {
+      if (likedCommentsIds.includes(comment.id)) {
+        comment['commentBool'] = 'liked-true'
+      }
+      else {
+        comment['commentBool'] = 'liked-false'
       }
     })
-    console.log('WHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', likedComment)
-    if (likedComment) {
-      likedCommentsIds.push(likedComment.likeableId)
-    }
-  }
 
-  comments.forEach(comment => {
-    if (likedCommentsIds.includes(comment.id)) {
-      comment['commentBool'] = 'liked-true'
-    }
-    else {
-      comment['commentBool'] = 'liked-false'
-    }
-  })
+  }
 
   //follow button implementation
   const profileUser = await User.findByPk(story.author.id, {
