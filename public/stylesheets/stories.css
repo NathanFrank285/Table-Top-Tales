@@ -178,6 +178,13 @@
     margin-left: 0.5em;
     border-radius: 10px;
 }
+
+.comment__div {
+    padding: .5em;
+    margin: .5em 0;
+    border: 1px solid black;
+}
+
 p.article__body{
     white-space: pre-wrap;
 }
